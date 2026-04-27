@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/home/samuel/GP/Raycasting-Engine/build",
+  "command": "/usr/bin/c++  -I/home/samuel/GP/Raycasting-Engine/include -I/home/samuel/GP/Raycasting-Engine/engine/include -g -Wall -Wextra -Wfloat-conversion -o CMakeFiles/Raycasting.dir/src/main.cpp.o -c /home/samuel/GP/Raycasting-Engine/src/main.cpp",
+  "file": "/home/samuel/GP/Raycasting-Engine/src/main.cpp",
+  "output": "CMakeFiles/Raycasting.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/samuel/GP/Raycasting-Engine/build",
+  "command": "/usr/bin/c++  -I/home/samuel/GP/Raycasting-Engine/include -I/home/samuel/GP/Raycasting-Engine/engine/include -g -Wall -Wextra -Wfloat-conversion -o CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o -c /home/samuel/GP/Raycasting-Engine/engine/src/math/utils.cpp",
+  "file": "/home/samuel/GP/Raycasting-Engine/engine/src/math/utils.cpp",
+  "output": "CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o"
+},
+{
+  "directory": "/home/samuel/GP/Raycasting-Engine/build",
+  "command": "/usr/bin/c++  -I/home/samuel/GP/Raycasting-Engine/include -I/home/samuel/GP/Raycasting-Engine/engine/include -g -Wall -Wextra -Wfloat-conversion -o CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.o -c /home/samuel/GP/Raycasting-Engine/engine/src/math/Trig.cpp",
+  "file": "/home/samuel/GP/Raycasting-Engine/engine/src/math/Trig.cpp",
+  "output": "CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.o"
+},
+{
+  "directory": "/home/samuel/GP/Raycasting-Engine/build",
+  "command": "/usr/bin/c++  -I/home/samuel/GP/Raycasting-Engine/include -I/home/samuel/GP/Raycasting-Engine/engine/include -g -Wall -Wextra -Wfloat-conversion -o CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.o -c /home/samuel/GP/Raycasting-Engine/engine/src/math/FixedPointInt.cpp",
+  "file": "/home/samuel/GP/Raycasting-Engine/engine/src/math/FixedPointInt.cpp",
+  "output": "CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.o"
+}
+]

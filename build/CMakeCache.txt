@@ -223,6 +223,9 @@ Raycasting_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Raycasting_SOURCE_DIR:STATIC=/home/samuel/GP/Raycasting-Engine
 
+//The directory containing a CMake configuration file for SDL2.
+SDL2_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/SDL2
+
 
 ########################
 # INTERNAL cache entries

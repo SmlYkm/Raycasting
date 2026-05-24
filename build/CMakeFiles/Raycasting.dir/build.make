@@ -83,24 +83,94 @@ CMakeFiles/Raycasting.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Raycasting.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/samuel/GP/Raycasting-Engine/src/main.cpp -o CMakeFiles/Raycasting.dir/src/main.cpp.s
 
-CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o: CMakeFiles/Raycasting.dir/flags.make
-CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o: /home/samuel/GP/Raycasting-Engine/engine/src/math/utils.cpp
-CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o: CMakeFiles/Raycasting.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/samuel/GP/Raycasting-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o -MF CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o.d -o CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o -c /home/samuel/GP/Raycasting-Engine/engine/src/math/utils.cpp
+CMakeFiles/Raycasting.dir/src/Level1.cpp.o: CMakeFiles/Raycasting.dir/flags.make
+CMakeFiles/Raycasting.dir/src/Level1.cpp.o: /home/samuel/GP/Raycasting-Engine/src/Level1.cpp
+CMakeFiles/Raycasting.dir/src/Level1.cpp.o: CMakeFiles/Raycasting.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/samuel/GP/Raycasting-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Raycasting.dir/src/Level1.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Raycasting.dir/src/Level1.cpp.o -MF CMakeFiles/Raycasting.dir/src/Level1.cpp.o.d -o CMakeFiles/Raycasting.dir/src/Level1.cpp.o -c /home/samuel/GP/Raycasting-Engine/src/Level1.cpp
 
-CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/samuel/GP/Raycasting-Engine/engine/src/math/utils.cpp > CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.i
+CMakeFiles/Raycasting.dir/src/Level1.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Raycasting.dir/src/Level1.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/samuel/GP/Raycasting-Engine/src/Level1.cpp > CMakeFiles/Raycasting.dir/src/Level1.cpp.i
 
-CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/samuel/GP/Raycasting-Engine/engine/src/math/utils.cpp -o CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.s
+CMakeFiles/Raycasting.dir/src/Level1.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Raycasting.dir/src/Level1.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/samuel/GP/Raycasting-Engine/src/Level1.cpp -o CMakeFiles/Raycasting.dir/src/Level1.cpp.s
+
+CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.o: CMakeFiles/Raycasting.dir/flags.make
+CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.o: /home/samuel/GP/Raycasting-Engine/engine/src/entities/Creature.cpp
+CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.o: CMakeFiles/Raycasting.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/samuel/GP/Raycasting-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.o -MF CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.o.d -o CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.o -c /home/samuel/GP/Raycasting-Engine/engine/src/entities/Creature.cpp
+
+CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/samuel/GP/Raycasting-Engine/engine/src/entities/Creature.cpp > CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.i
+
+CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/samuel/GP/Raycasting-Engine/engine/src/entities/Creature.cpp -o CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.s
+
+CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.o: CMakeFiles/Raycasting.dir/flags.make
+CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.o: /home/samuel/GP/Raycasting-Engine/engine/src/entities/Entity.cpp
+CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.o: CMakeFiles/Raycasting.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/samuel/GP/Raycasting-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.o -MF CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.o.d -o CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.o -c /home/samuel/GP/Raycasting-Engine/engine/src/entities/Entity.cpp
+
+CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/samuel/GP/Raycasting-Engine/engine/src/entities/Entity.cpp > CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.i
+
+CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/samuel/GP/Raycasting-Engine/engine/src/entities/Entity.cpp -o CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.s
+
+CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.o: CMakeFiles/Raycasting.dir/flags.make
+CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.o: /home/samuel/GP/Raycasting-Engine/engine/src/entities/Player.cpp
+CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.o: CMakeFiles/Raycasting.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/samuel/GP/Raycasting-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.o -MF CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.o.d -o CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.o -c /home/samuel/GP/Raycasting-Engine/engine/src/entities/Player.cpp
+
+CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/samuel/GP/Raycasting-Engine/engine/src/entities/Player.cpp > CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.i
+
+CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/samuel/GP/Raycasting-Engine/engine/src/entities/Player.cpp -o CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.s
+
+CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.o: CMakeFiles/Raycasting.dir/flags.make
+CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.o: /home/samuel/GP/Raycasting-Engine/engine/src/math/AABB.cpp
+CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.o: CMakeFiles/Raycasting.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/samuel/GP/Raycasting-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.o -MF CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.o.d -o CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.o -c /home/samuel/GP/Raycasting-Engine/engine/src/math/AABB.cpp
+
+CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/samuel/GP/Raycasting-Engine/engine/src/math/AABB.cpp > CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.i
+
+CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/samuel/GP/Raycasting-Engine/engine/src/math/AABB.cpp -o CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.s
+
+CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.o: CMakeFiles/Raycasting.dir/flags.make
+CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.o: /home/samuel/GP/Raycasting-Engine/engine/src/math/FixedPointInt32.cpp
+CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.o: CMakeFiles/Raycasting.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/samuel/GP/Raycasting-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.o -MF CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.o.d -o CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.o -c /home/samuel/GP/Raycasting-Engine/engine/src/math/FixedPointInt32.cpp
+
+CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/samuel/GP/Raycasting-Engine/engine/src/math/FixedPointInt32.cpp > CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.i
+
+CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/samuel/GP/Raycasting-Engine/engine/src/math/FixedPointInt32.cpp -o CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.s
 
 CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.o: CMakeFiles/Raycasting.dir/flags.make
 CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.o: /home/samuel/GP/Raycasting-Engine/engine/src/math/Trig.cpp
 CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.o: CMakeFiles/Raycasting.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/samuel/GP/Raycasting-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/samuel/GP/Raycasting-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.o -MF CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.o.d -o CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.o -c /home/samuel/GP/Raycasting-Engine/engine/src/math/Trig.cpp
 
 CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.i: cmake_force
@@ -111,37 +181,64 @@ CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/samuel/GP/Raycasting-Engine/engine/src/math/Trig.cpp -o CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.s
 
-CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.o: CMakeFiles/Raycasting.dir/flags.make
-CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.o: /home/samuel/GP/Raycasting-Engine/engine/src/math/FixedPointInt.cpp
-CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.o: CMakeFiles/Raycasting.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/samuel/GP/Raycasting-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.o -MF CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.o.d -o CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.o -c /home/samuel/GP/Raycasting-Engine/engine/src/math/FixedPointInt.cpp
+CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o: CMakeFiles/Raycasting.dir/flags.make
+CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o: /home/samuel/GP/Raycasting-Engine/engine/src/math/utils.cpp
+CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o: CMakeFiles/Raycasting.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/samuel/GP/Raycasting-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o -MF CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o.d -o CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o -c /home/samuel/GP/Raycasting-Engine/engine/src/math/utils.cpp
 
-CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/samuel/GP/Raycasting-Engine/engine/src/math/FixedPointInt.cpp > CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.i
+CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/samuel/GP/Raycasting-Engine/engine/src/math/utils.cpp > CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.i
 
-CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/samuel/GP/Raycasting-Engine/engine/src/math/FixedPointInt.cpp -o CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.s
+CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/samuel/GP/Raycasting-Engine/engine/src/math/utils.cpp -o CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.s
+
+CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.o: CMakeFiles/Raycasting.dir/flags.make
+CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.o: /home/samuel/GP/Raycasting-Engine/engine/src/world/Level.cpp
+CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.o: CMakeFiles/Raycasting.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/samuel/GP/Raycasting-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.o -MF CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.o.d -o CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.o -c /home/samuel/GP/Raycasting-Engine/engine/src/world/Level.cpp
+
+CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/samuel/GP/Raycasting-Engine/engine/src/world/Level.cpp > CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.i
+
+CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/samuel/GP/Raycasting-Engine/engine/src/world/Level.cpp -o CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.s
 
 # Object files for target Raycasting
 Raycasting_OBJECTS = \
 "CMakeFiles/Raycasting.dir/src/main.cpp.o" \
-"CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o" \
+"CMakeFiles/Raycasting.dir/src/Level1.cpp.o" \
+"CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.o" \
+"CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.o" \
+"CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.o" \
+"CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.o" \
+"CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.o" \
 "CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.o" \
-"CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.o"
+"CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o" \
+"CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.o"
 
 # External object files for target Raycasting
 Raycasting_EXTERNAL_OBJECTS =
 
 Raycasting: CMakeFiles/Raycasting.dir/src/main.cpp.o
-Raycasting: CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o
+Raycasting: CMakeFiles/Raycasting.dir/src/Level1.cpp.o
+Raycasting: CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.o
+Raycasting: CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.o
+Raycasting: CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.o
+Raycasting: CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.o
+Raycasting: CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.o
 Raycasting: CMakeFiles/Raycasting.dir/engine/src/math/Trig.cpp.o
-Raycasting: CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.o
+Raycasting: CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.o
+Raycasting: CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.o
 Raycasting: CMakeFiles/Raycasting.dir/build.make
+Raycasting: /usr/lib/x86_64-linux-gnu/libSDL2.so
 Raycasting: CMakeFiles/Raycasting.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/samuel/GP/Raycasting-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Raycasting"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/samuel/GP/Raycasting-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable Raycasting"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Raycasting.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

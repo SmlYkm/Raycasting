@@ -129,29 +129,125 @@ Raycasting/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/build
 .PHONY : Raycasting/fast
 
-engine/src/math/FixedPointInt.o: engine/src/math/FixedPointInt.cpp.o
-.PHONY : engine/src/math/FixedPointInt.o
+engine/src/entities/Creature.o: engine/src/entities/Creature.cpp.o
+.PHONY : engine/src/entities/Creature.o
 
 # target to build an object file
-engine/src/math/FixedPointInt.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.o
-.PHONY : engine/src/math/FixedPointInt.cpp.o
+engine/src/entities/Creature.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.o
+.PHONY : engine/src/entities/Creature.cpp.o
 
-engine/src/math/FixedPointInt.i: engine/src/math/FixedPointInt.cpp.i
-.PHONY : engine/src/math/FixedPointInt.i
+engine/src/entities/Creature.i: engine/src/entities/Creature.cpp.i
+.PHONY : engine/src/entities/Creature.i
 
 # target to preprocess a source file
-engine/src/math/FixedPointInt.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.i
-.PHONY : engine/src/math/FixedPointInt.cpp.i
+engine/src/entities/Creature.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.i
+.PHONY : engine/src/entities/Creature.cpp.i
 
-engine/src/math/FixedPointInt.s: engine/src/math/FixedPointInt.cpp.s
-.PHONY : engine/src/math/FixedPointInt.s
+engine/src/entities/Creature.s: engine/src/entities/Creature.cpp.s
+.PHONY : engine/src/entities/Creature.s
 
 # target to generate assembly for a file
-engine/src/math/FixedPointInt.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt.cpp.s
-.PHONY : engine/src/math/FixedPointInt.cpp.s
+engine/src/entities/Creature.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/entities/Creature.cpp.s
+.PHONY : engine/src/entities/Creature.cpp.s
+
+engine/src/entities/Entity.o: engine/src/entities/Entity.cpp.o
+.PHONY : engine/src/entities/Entity.o
+
+# target to build an object file
+engine/src/entities/Entity.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.o
+.PHONY : engine/src/entities/Entity.cpp.o
+
+engine/src/entities/Entity.i: engine/src/entities/Entity.cpp.i
+.PHONY : engine/src/entities/Entity.i
+
+# target to preprocess a source file
+engine/src/entities/Entity.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.i
+.PHONY : engine/src/entities/Entity.cpp.i
+
+engine/src/entities/Entity.s: engine/src/entities/Entity.cpp.s
+.PHONY : engine/src/entities/Entity.s
+
+# target to generate assembly for a file
+engine/src/entities/Entity.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/entities/Entity.cpp.s
+.PHONY : engine/src/entities/Entity.cpp.s
+
+engine/src/entities/Player.o: engine/src/entities/Player.cpp.o
+.PHONY : engine/src/entities/Player.o
+
+# target to build an object file
+engine/src/entities/Player.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.o
+.PHONY : engine/src/entities/Player.cpp.o
+
+engine/src/entities/Player.i: engine/src/entities/Player.cpp.i
+.PHONY : engine/src/entities/Player.i
+
+# target to preprocess a source file
+engine/src/entities/Player.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.i
+.PHONY : engine/src/entities/Player.cpp.i
+
+engine/src/entities/Player.s: engine/src/entities/Player.cpp.s
+.PHONY : engine/src/entities/Player.s
+
+# target to generate assembly for a file
+engine/src/entities/Player.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/entities/Player.cpp.s
+.PHONY : engine/src/entities/Player.cpp.s
+
+engine/src/math/AABB.o: engine/src/math/AABB.cpp.o
+.PHONY : engine/src/math/AABB.o
+
+# target to build an object file
+engine/src/math/AABB.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.o
+.PHONY : engine/src/math/AABB.cpp.o
+
+engine/src/math/AABB.i: engine/src/math/AABB.cpp.i
+.PHONY : engine/src/math/AABB.i
+
+# target to preprocess a source file
+engine/src/math/AABB.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.i
+.PHONY : engine/src/math/AABB.cpp.i
+
+engine/src/math/AABB.s: engine/src/math/AABB.cpp.s
+.PHONY : engine/src/math/AABB.s
+
+# target to generate assembly for a file
+engine/src/math/AABB.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/math/AABB.cpp.s
+.PHONY : engine/src/math/AABB.cpp.s
+
+engine/src/math/FixedPointInt32.o: engine/src/math/FixedPointInt32.cpp.o
+.PHONY : engine/src/math/FixedPointInt32.o
+
+# target to build an object file
+engine/src/math/FixedPointInt32.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.o
+.PHONY : engine/src/math/FixedPointInt32.cpp.o
+
+engine/src/math/FixedPointInt32.i: engine/src/math/FixedPointInt32.cpp.i
+.PHONY : engine/src/math/FixedPointInt32.i
+
+# target to preprocess a source file
+engine/src/math/FixedPointInt32.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.i
+.PHONY : engine/src/math/FixedPointInt32.cpp.i
+
+engine/src/math/FixedPointInt32.s: engine/src/math/FixedPointInt32.cpp.s
+.PHONY : engine/src/math/FixedPointInt32.s
+
+# target to generate assembly for a file
+engine/src/math/FixedPointInt32.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/math/FixedPointInt32.cpp.s
+.PHONY : engine/src/math/FixedPointInt32.cpp.s
 
 engine/src/math/Trig.o: engine/src/math/Trig.cpp.o
 .PHONY : engine/src/math/Trig.o
@@ -201,6 +297,54 @@ engine/src/math/utils.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/math/utils.cpp.s
 .PHONY : engine/src/math/utils.cpp.s
 
+engine/src/world/Level.o: engine/src/world/Level.cpp.o
+.PHONY : engine/src/world/Level.o
+
+# target to build an object file
+engine/src/world/Level.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.o
+.PHONY : engine/src/world/Level.cpp.o
+
+engine/src/world/Level.i: engine/src/world/Level.cpp.i
+.PHONY : engine/src/world/Level.i
+
+# target to preprocess a source file
+engine/src/world/Level.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.i
+.PHONY : engine/src/world/Level.cpp.i
+
+engine/src/world/Level.s: engine/src/world/Level.cpp.s
+.PHONY : engine/src/world/Level.s
+
+# target to generate assembly for a file
+engine/src/world/Level.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/engine/src/world/Level.cpp.s
+.PHONY : engine/src/world/Level.cpp.s
+
+src/Level1.o: src/Level1.cpp.o
+.PHONY : src/Level1.o
+
+# target to build an object file
+src/Level1.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/src/Level1.cpp.o
+.PHONY : src/Level1.cpp.o
+
+src/Level1.i: src/Level1.cpp.i
+.PHONY : src/Level1.i
+
+# target to preprocess a source file
+src/Level1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/src/Level1.cpp.i
+.PHONY : src/Level1.cpp.i
+
+src/Level1.s: src/Level1.cpp.s
+.PHONY : src/Level1.s
+
+# target to generate assembly for a file
+src/Level1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Raycasting.dir/build.make CMakeFiles/Raycasting.dir/src/Level1.cpp.s
+.PHONY : src/Level1.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -234,15 +378,33 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Raycasting"
-	@echo "... engine/src/math/FixedPointInt.o"
-	@echo "... engine/src/math/FixedPointInt.i"
-	@echo "... engine/src/math/FixedPointInt.s"
+	@echo "... engine/src/entities/Creature.o"
+	@echo "... engine/src/entities/Creature.i"
+	@echo "... engine/src/entities/Creature.s"
+	@echo "... engine/src/entities/Entity.o"
+	@echo "... engine/src/entities/Entity.i"
+	@echo "... engine/src/entities/Entity.s"
+	@echo "... engine/src/entities/Player.o"
+	@echo "... engine/src/entities/Player.i"
+	@echo "... engine/src/entities/Player.s"
+	@echo "... engine/src/math/AABB.o"
+	@echo "... engine/src/math/AABB.i"
+	@echo "... engine/src/math/AABB.s"
+	@echo "... engine/src/math/FixedPointInt32.o"
+	@echo "... engine/src/math/FixedPointInt32.i"
+	@echo "... engine/src/math/FixedPointInt32.s"
 	@echo "... engine/src/math/Trig.o"
 	@echo "... engine/src/math/Trig.i"
 	@echo "... engine/src/math/Trig.s"
 	@echo "... engine/src/math/utils.o"
 	@echo "... engine/src/math/utils.i"
 	@echo "... engine/src/math/utils.s"
+	@echo "... engine/src/world/Level.o"
+	@echo "... engine/src/world/Level.i"
+	@echo "... engine/src/world/Level.s"
+	@echo "... src/Level1.o"
+	@echo "... src/Level1.i"
+	@echo "... src/Level1.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

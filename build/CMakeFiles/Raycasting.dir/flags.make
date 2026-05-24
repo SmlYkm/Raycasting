@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/samuel/GP/Raycasting-Engine/include -I/home/samuel/GP/Raycasting-Engine/engine/include
+CXX_INCLUDES = -I/home/samuel/GP/Raycasting-Engine/include -I/home/samuel/GP/Raycasting-Engine/engine/include -isystem /usr/include/SDL2
 
-CXX_FLAGS = -g -Wall -Wextra -Wfloat-conversion
+CXX_FLAGS = -g -std=gnu++14 -Wall -Wextra -Wfloat-conversion
 

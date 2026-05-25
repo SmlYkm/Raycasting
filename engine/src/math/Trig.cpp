@@ -1,7 +1,7 @@
 #include "math/utils.hpp"
 #include "math/Trig.hpp"
 
-#include <iostream>
+// #include <iostream>
 
 namespace engine {
     namespace math {
@@ -61,9 +61,9 @@ namespace engine {
             } else if (angle <= 180) {
                 return sin_m[180 - angle];
             } else if (angle <= 270) {
-                return sin_m[angle - 180] * -1;
+                return -sin_m[angle - 180];
             } 
-            return sin_m[360 - angle] * -1;
+            return -sin_m[360 - angle];
         }
 
         const FixedPointInt32 Trig::sin(const FixedPointInt32& degrees) {
@@ -80,9 +80,8 @@ namespace engine {
 
         const FixedPointInt32 Trig::tan(const int degrees) {
             FixedPointInt32 c = cos(degrees);
-            if (c == 0) {
+            if (c == 0)
                 return FixedPointInt32::max(); 
-            }
             return sin(degrees) / c;
         }
 

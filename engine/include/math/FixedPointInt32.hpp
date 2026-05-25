@@ -39,20 +39,44 @@ namespace engine {
         public:
             // Mathematical Operators
             FixedPointInt32 operator+(const FixedPointInt32 &other) const;
+            FixedPointInt32 operator+(const int32_t number) const;
+            friend FixedPointInt32 operator+(const int32_t number, const FixedPointInt32 &other);
+
             FixedPointInt32 operator-(const FixedPointInt32 &other) const;
+            FixedPointInt32 operator-(const int32_t number) const;
+            friend FixedPointInt32 operator-(const int32_t number, const FixedPointInt32 &other);
+            FixedPointInt32 operator-() const;
+
             FixedPointInt32 operator*(const FixedPointInt32 &other) const;
-            FixedPointInt32 operator/(const FixedPointInt32 &other) const;
+            FixedPointInt32 operator*(const int32_t number) const;
+            friend FixedPointInt32 operator*(const int32_t number, const FixedPointInt32 &other);
             
+            FixedPointInt32 operator/(const FixedPointInt32 &other) const;
+            FixedPointInt32 operator/(const int32_t number) const;
+            friend FixedPointInt32 operator/(const int32_t number, const FixedPointInt32 &other);
+
             FixedPointInt32& operator=(const FixedPointInt32 &other);
             FixedPointInt32& operator=(const int32_t number);
 
             FixedPointInt32& operator+=(const FixedPointInt32 &other);
+            FixedPointInt32& operator+=(const int32_t number);
+            friend FixedPointInt32 operator+=(const int32_t number, const FixedPointInt32 &other);
+
             FixedPointInt32& operator-=(const FixedPointInt32 &other);
+            FixedPointInt32& operator-=(const int32_t number);
+            friend FixedPointInt32 operator-=(const int32_t number, const FixedPointInt32 &other);
+
             FixedPointInt32& operator*=(const FixedPointInt32 &other);
+            FixedPointInt32& operator*=(const int32_t number);
+            friend FixedPointInt32 operator*=(const int32_t number, const FixedPointInt32 &other);
+
             FixedPointInt32& operator/=(const FixedPointInt32 &other);
+            FixedPointInt32& operator/=(const int32_t number);
+            friend FixedPointInt32 operator/=(const int32_t number, const FixedPointInt32 &other);
 
             FixedPointInt32& operator++();       
             FixedPointInt32 operator++(int32_t);     
+
             FixedPointInt32& operator--();       
             FixedPointInt32 operator--(int32_t);     
 

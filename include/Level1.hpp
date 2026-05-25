@@ -8,7 +8,6 @@ namespace game {
         Level1();
         ~Level1();
 
-        // Must override the pure virtual function!
         void run() override; 
     };
 }

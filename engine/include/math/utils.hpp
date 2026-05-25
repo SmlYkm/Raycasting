@@ -2,8 +2,8 @@
 
 namespace engine {
     namespace math {
-        int max_int();  // Used to find max/min int value without stdlib or external dependencies
-        int min_int();  // Used to find max/min int value without stdlib or external dependencies
+        int max_int();  // Used to find max/min int value, unnecessary since you can get them from stdlib, but it's fun to check out
+        int min_int();  // Used to find max/min int value, unnecessary since you can get them from stdlib, but it's fun to check out
 
         unsigned int factorial(const unsigned int n);
         int gcd(int a, int b);  // Greatest common divisor of two numbers

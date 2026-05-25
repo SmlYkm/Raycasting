@@ -125,13 +125,42 @@ namespace engine {
             return FixedPointInt32(bits_m + other.bits_m, false);
         }
 
+        FixedPointInt32 FixedPointInt32::operator+(const int32_t number) const {
+            return *this + FixedPointInt32(number);
+        }
+
+        FixedPointInt32 operator+(const int32_t number, const FixedPointInt32 &other) {
+            return FixedPointInt32(number) + other;
+        }
+
+
         FixedPointInt32 FixedPointInt32::operator-(const FixedPointInt32 &other) const {
             return FixedPointInt32(bits_m - other.bits_m, false);
+        }
+
+        FixedPointInt32 FixedPointInt32::operator-(const int32_t number) const {
+            return *this - FixedPointInt32(number);
+        }
+
+        FixedPointInt32 operator-(const int32_t number, const FixedPointInt32 &other) {
+            return FixedPointInt32(number) - other;
+        }
+
+        FixedPointInt32 FixedPointInt32::operator-() const {
+            return FixedPointInt32(-bits_m);
         }
 
         FixedPointInt32 FixedPointInt32::operator*(const FixedPointInt32 &other) const {
             int64_t temp = (int64_t)(bits_m) * (int64_t)(other.bits_m);
             return FixedPointInt32((int32_t)(temp >> 16), false);
+        }
+
+        FixedPointInt32 FixedPointInt32::operator*(const int32_t number) const {
+            return *this * FixedPointInt32(number);
+        }
+
+        FixedPointInt32 operator*(const int32_t number, const FixedPointInt32 &other) {
+            return FixedPointInt32(number) * other;
         }
 
         FixedPointInt32 FixedPointInt32::operator/(const FixedPointInt32 &other) const {
@@ -140,6 +169,14 @@ namespace engine {
 
             int64_t temp = (int64_t)(bits_m) << 16;
             return FixedPointInt32((int32_t)(temp / other.bits_m), false);
+        }
+
+        FixedPointInt32 FixedPointInt32::operator/(const int32_t number) const {
+            return *this / FixedPointInt32(number);
+        }
+
+        FixedPointInt32 operator/(const int32_t number, const FixedPointInt32 &other) {
+            return FixedPointInt32(number) / other;
         }
 
         // Assignment Operators
@@ -158,14 +195,39 @@ namespace engine {
             return *this;
         }
 
+        FixedPointInt32& FixedPointInt32::operator+=(const int32_t number) {
+            return *this += FixedPointInt32(number);
+        }
+
+        FixedPointInt32 operator+=(const int32_t number, const FixedPointInt32 &other) {
+            return FixedPointInt32(number) + other;
+        }
+
+
         FixedPointInt32& FixedPointInt32::operator-=(const FixedPointInt32 &other) {
             bits_m -= other.bits_m;
             return *this;
         }
 
+        FixedPointInt32& FixedPointInt32::operator-=(const int32_t number) {
+            return *this -= FixedPointInt32(number);
+        }
+
+        FixedPointInt32 operator-=(const int32_t number, const FixedPointInt32 &other) {
+            return FixedPointInt32(number) - other;
+        }
+
         FixedPointInt32& FixedPointInt32::operator*=(const FixedPointInt32 &other) {
             *this = *this * other; 
             return *this;
+        }
+
+        FixedPointInt32& FixedPointInt32::operator*=(const int32_t number) {
+            return *this *= FixedPointInt32(number);
+        }
+
+        FixedPointInt32 operator*=(const int32_t number, const FixedPointInt32 &other) {
+            return FixedPointInt32(number) * other;
         }
 
         FixedPointInt32& FixedPointInt32::operator/=(const FixedPointInt32 &other) {
@@ -174,6 +236,14 @@ namespace engine {
 
             *this = *this / other;
             return *this;
+        }
+
+        FixedPointInt32& FixedPointInt32::operator/=(const int32_t number) {
+            return *this /= FixedPointInt32(number);
+        }
+
+        FixedPointInt32 operator/=(const int32_t number, const FixedPointInt32 &other) {
+            return FixedPointInt32(number) / other;
         }
 
         FixedPointInt32& FixedPointInt32::operator++() {  // Pre
@@ -328,10 +398,7 @@ namespace engine {
             if ((bits_m & 0x0000FFFF) == 0)
                 return *this;
 
-            if (bits_m > 0)
-                return floor() + FixedPointInt32(0x00010000, false);
-
-            return floor();
+            return floor() + FixedPointInt32(0x00010000, false);
         }
 
         std::ostream& operator<<(std::ostream& out, const FixedPointInt32& n) {
@@ -340,8 +407,11 @@ namespace engine {
             int32_t whole = n.get_int();
             int32_t frac  = n.get_frac();
 
-            if (is_negative)
-                frac *= -1;
+            if (is_negative) {
+                frac  *= -1;
+                whole *= -1;
+                out << "-";
+            }
 
             frac = (int32_t) (
                 ((uint64_t)frac * 10000) >> 16

@@ -1,3 +1,0 @@
-/home/samuel/GP/Raycasting-Engine/build/CMakeFiles/Raycasting.dir
-/home/samuel/GP/Raycasting-Engine/build/CMakeFiles/edit_cache.dir
-/home/samuel/GP/Raycasting-Engine/build/CMakeFiles/rebuild_cache.dir

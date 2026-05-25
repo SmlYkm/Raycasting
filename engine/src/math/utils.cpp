@@ -34,12 +34,10 @@ namespace engine {
         }
 
         int gcd(int a, int b) {
-            if (a == 0) {
+            if (a == 0)
                 return b;
-            }
-            if (b == 0) {
+            if (b == 0)
                 return a;
-            }
 
             int k = 0;
             for (k = 0; ((a | b) & 1) == 0; ++k) {
@@ -47,14 +45,13 @@ namespace engine {
                 b >>= 1;
             }
 
-            while ((a & 1) == 0) {
+            while ((a & 1) == 0)
                 a >>= 1;
-            }
 
             do {
-                while ((b & 1) == 0) {
+                while ((b & 1) == 0)
                     b >>= 1;
-                }
+
                 if (a > b) {
                     const int temp = b;
                     b = a;
@@ -67,9 +64,8 @@ namespace engine {
         }
 
         unsigned int estimate_sqrt_int(const unsigned int n, const short unsigned int n_recursions) {
-            if (n == 0 || n == 1) {
+            if (n == 0 || n == 1)
                 return n;
-            }
             unsigned int guess = n / 2;
             for (short unsigned int i = 0; i < n_recursions; ++i) { 
                 if (guess * guess == n){
@@ -81,15 +77,11 @@ namespace engine {
         }
 
         bool mul_will_overflow(int a, int b) {
-            if (a == 0 || b == 0) {
+            if (a == 0 || b == 0)
                 return false;
-            }
-            // We check against max_int() / b. 
-            // We have to be careful about signs, assuming a and b are positive for this snippet:
             const int maxint = max_int();
-            if (a > 0 && b > 0 && a > (maxint / b)) {
+            if (a > 0 && b > 0 && a > (maxint / b))
                 return true; 
-            }            
             return false;
         }
     }

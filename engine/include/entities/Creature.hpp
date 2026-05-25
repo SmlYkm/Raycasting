@@ -5,7 +5,7 @@
 namespace engine {
     namespace entities {
         class Creature : public Entity {
-        protected:
+        public:
             enum State {
                 Right,
                 Left,
@@ -16,19 +16,19 @@ namespace engine {
 
         protected:
             State               state_m;
-            math::FixedPointInt velocity_m;
+            math::FixedPointInt32 velocity_m;
             math::Vector2D      direction_m;
-            math::FixedPointInt angle_m;
-            math::FixedPointInt angular_velocity_m;
+            math::FixedPointInt32 angle_m;
+            math::FixedPointInt32 angular_velocity_m;
 
         public:
             Creature(
                 const math::Vector2D&      position         = math::Vector2D(),
                 const math::AABB&          hitbox           = math::AABB(),
-                const math::FixedPointInt& velocity         = math::FixedPointInt(),
+                const math::FixedPointInt32& velocity         = math::FixedPointInt32(),
                 const math::Vector2D&      direction        = math::Vector2D(),
-                const math::FixedPointInt& angle            = math::FixedPointInt(),
-                const math::FixedPointInt& angular_velocity = math::FixedPointInt()
+                const math::FixedPointInt32& angle            = math::FixedPointInt32(),
+                const math::FixedPointInt32& angular_velocity = math::FixedPointInt32()
             );
             virtual ~Creature();
 

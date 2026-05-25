@@ -3,16 +3,15 @@
 namespace engine {
     namespace world {
 
-        Level::Level(const char* map_data, const int rows, const int cols)   
-            : world_m(nullptr)
+        Level::Level(const char* map_data, const int rows, const int cols) : 
+            world_m(nullptr),
+            rows_m(rows), 
+            cols_m(cols),
 #ifdef USE_LIST
-            , entities_list_m()
+            entities_list_m() {
 #else
-            , entities_count_m(0)
+            entities_count_m(0) {
 #endif
-            , rows_m(rows)
-            , cols_m(cols) {
-            
             // Input validation
             if (rows < 3 || cols < 3 || map_data == nullptr) {
                 rows_m = 0;
@@ -54,8 +53,8 @@ namespace engine {
 
         bool Level::is_wall(const math::Vector2D& position) const {
             // Convert physical coordinates to integer grid cells
-            int grid_x = position.x.floor().to_int();
-            int grid_y = position.y.floor().to_int();
+            int grid_x = position.x.floor().get_int();
+            int grid_y = position.y.floor().get_int();
 
             char tile = get_tile(grid_y, grid_x);
             
@@ -65,11 +64,11 @@ namespace engine {
 
         bool Level::hitbox_overlaps_wall(const math::AABB& entity_box) const {
             // 1. Hash the AABB corners down to the grid indices
-            int min_grid_x = entity_box.topleft().x.floor().to_int();
-            int min_grid_y = entity_box.topleft().y.floor().to_int();
+            int min_grid_x = entity_box.topleft().x.floor().get_int();
+            int min_grid_y = entity_box.topleft().y.floor().get_int();
             
-            int max_grid_x = entity_box.bottomright().x.floor().to_int();
-            int max_grid_y = entity_box.bottomright().y.floor().to_int();
+            int max_grid_x = entity_box.bottomright().x.floor().get_int();
+            int max_grid_y = entity_box.bottomright().y.floor().get_int();
 
 
             for (int row = min_grid_y; row <= max_grid_y; ++row) {

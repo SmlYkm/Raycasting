@@ -1,7 +1,5 @@
 #pragma once
 
-// If possible, avoid using this class, it's somewhat computationally expensive
-
 namespace engine {
     namespace data {
         template <class T>
@@ -17,16 +15,16 @@ namespace engine {
                 Node<Type>* prev_m;
 
             public:
-                Node(Type data, Node<Type>* prev = nullptr, Node<Type>* next = nullptr)
-                    : data_m(data)
-                    , prev_m(prev)
-                    , next_m(next) {
+                Node(Type data, Node<Type>* prev = nullptr, Node<Type>* next = nullptr) : 
+                    data_m(data), 
+                    prev_m(prev), 
+                    next_m(next) {
                 }
 
-                Node()
-                    : data_m(Type())
-                    , prev_m(nullptr)
-                    , next_m(nullptr) {
+                Node() : 
+                    data_m(Type()), 
+                    prev_m(nullptr), 
+                    next_m(nullptr) {
                 }
 
                 ~Node() {
@@ -70,8 +68,8 @@ namespace engine {
                 Node<T>* current_m;
 
             public:
-                Iterator(Node<T>* head = nullptr)
-                    : current_m(head) {
+                Iterator(Node<T>* head = nullptr) : 
+                    current_m(head) {
                 }
 
                 ~Iterator() {
@@ -102,10 +100,10 @@ namespace engine {
             };
         
         public:
-            List()
-                : head_m(nullptr)
-                , tail_m(nullptr)
-                , length_m(0) {
+            List() : 
+                head_m(nullptr), 
+                tail_m(nullptr), 
+                length_m(0) {
             }
 
             ~List() {

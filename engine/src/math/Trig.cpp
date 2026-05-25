@@ -4,7 +4,7 @@
 namespace engine {
     namespace math {
         const short unsigned int Trig::n_samples(91);
-        const FixedPointInt* Trig::sin_m(create_sin_m());
+        const FixedPointInt32* Trig::sin_m(create_sin_m());
 
         Trig::Trig() {
         }
@@ -12,8 +12,8 @@ namespace engine {
         Trig::~Trig() {
         }
 
-        const FixedPointInt* Trig::create_sin_m() {
-            static FixedPointInt sin_arr[91];
+        const FixedPointInt32* Trig::create_sin_m() {
+            static FixedPointInt32 sin_arr[91];
 
             for (int i = 0; i < 91; ++i) {
                 sin_arr[i] = taylor_sin(i);
@@ -22,17 +22,17 @@ namespace engine {
             return sin_arr;
         }
 
-        const FixedPointInt Trig::taylor_sin(const FixedPointInt& degrees) {
-            FixedPointInt pi = FixedPointInt::pi();
-            FixedPointInt temp = pi * degrees;
-            FixedPointInt radians(temp / 180);
-            FixedPointInt result(0, true);
+        const FixedPointInt32 Trig::taylor_sin(const FixedPointInt32& degrees) {
+            FixedPointInt32 pi = FixedPointInt32::pi();
+            FixedPointInt32 temp = pi * degrees;
+            FixedPointInt32 radians(temp / 180);
+            FixedPointInt32 result(0, true);
             
-            const int max_fact = FixedPointInt::max_factorial_n().to_int();
+            const int max_fact = FixedPointInt32::max_factorial_n().get_int();
             
             for (int n = 0; (1 + 2 * n) <= max_fact; ++n) {
-                FixedPointInt exp_val(1 + 2 * n, true); 
-                FixedPointInt term = radians.pow(1 + 2 * n) / exp_val.factorial();
+                FixedPointInt32 exp_val(1 + 2 * n, true); 
+                FixedPointInt32 term = radians.pow(1 + 2 * n) / exp_val.factorial();
 
                 if (n % 2 == 0) {
                     result += term;
@@ -44,11 +44,11 @@ namespace engine {
             return result;
         }
 
-        const FixedPointInt Trig::taylor_sin(const int degrees) {
-            return taylor_sin(FixedPointInt(degrees, true));
+        const FixedPointInt32 Trig::taylor_sin(const int degrees) {
+            return taylor_sin(FixedPointInt32(degrees, true));
         }
 
-        const FixedPointInt Trig::sin(const int degrees) {
+        const FixedPointInt32 Trig::sin(const int degrees) {
             // 1. Normalize angle to [0, 359]
             int angle = degrees % 360;
             if (angle < 0) angle += 360;
@@ -60,34 +60,34 @@ namespace engine {
                 return sin_m[180 - angle];
             } else if (angle <= 270) {
                 // Return negative (0 - value) since we don't have a unary minus operator yet
-                return FixedPointInt(0, true) - sin_m[angle - 180];
+                return FixedPointInt32(0, true) - sin_m[angle - 180];
             } else {
-                return FixedPointInt(0, true) - sin_m[360 - angle];
+                return FixedPointInt32(0, true) - sin_m[360 - angle];
             }
         }
 
-        const FixedPointInt Trig::sin(const FixedPointInt& degrees) {
-            return sin(degrees.to_int());
+        const FixedPointInt32 Trig::sin(const FixedPointInt32& degrees) {
+            return sin(degrees.get_int());
         }
 
-        const FixedPointInt Trig::cos(const int degrees) {
+        const FixedPointInt32 Trig::cos(const int degrees) {
             return sin(degrees + 90);
         }
 
-        const FixedPointInt Trig::cos(const FixedPointInt& degrees) {
-            return cos(degrees.to_int());
+        const FixedPointInt32 Trig::cos(const FixedPointInt32& degrees) {
+            return cos(degrees.get_int());
         }
 
-        const FixedPointInt Trig::tan(const int degrees) {
-            FixedPointInt c = cos(degrees);
+        const FixedPointInt32 Trig::tan(const int degrees) {
+            FixedPointInt32 c = cos(degrees);
             if (c == 0) {
-                return FixedPointInt::max(); 
+                return FixedPointInt32::max(); 
             }
             return sin(degrees) / c;
         }
 
-        const FixedPointInt Trig::tan(const FixedPointInt& degrees) {
-            return tan(degrees.to_int());
+        const FixedPointInt32 Trig::tan(const FixedPointInt32& degrees) {
+            return tan(degrees.get_int());
         }
     }
 }

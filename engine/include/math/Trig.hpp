@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FixedPointInt.hpp"
+#include "FixedPointInt32.hpp"
 
 namespace engine {
     namespace math {
@@ -8,7 +8,7 @@ namespace engine {
         // Uses fixed point arithmetic
         class Trig {
         private:
-            static const FixedPointInt     *sin_m;          // Arr size (Interval) = [0, 90] degrees
+            static const FixedPointInt32     *sin_m;          // Arr size (Interval) = [0, 90] degrees
             static const short unsigned int n_samples;  // 91, from 0⁰ to 90⁰
 
         private:
@@ -20,19 +20,19 @@ namespace engine {
             ~Trig();
 
         private:
-            static const FixedPointInt *create_sin_m();
+            static const FixedPointInt32 *create_sin_m();
 
         public:
             // Finally, the methods we care about
-            static const FixedPointInt taylor_sin(const int degrees);
-            static const FixedPointInt taylor_sin(const FixedPointInt& degrees);
+            static const FixedPointInt32 taylor_sin(const int degrees);
+            static const FixedPointInt32 taylor_sin(const FixedPointInt32& degrees);
 
-            static const FixedPointInt sin(const int degrees);
-            static const FixedPointInt sin(const FixedPointInt& degrees);
-            static const FixedPointInt cos(const int degrees);
-            static const FixedPointInt cos(const FixedPointInt& degrees);
-            static const FixedPointInt tan(const int degrees);
-            static const FixedPointInt tan(const FixedPointInt& degrees);
+            static const FixedPointInt32 sin(const int degrees);
+            static const FixedPointInt32 sin(const FixedPointInt32& degrees);
+            static const FixedPointInt32 cos(const int degrees);
+            static const FixedPointInt32 cos(const FixedPointInt32& degrees);
+            static const FixedPointInt32 tan(const int degrees);
+            static const FixedPointInt32 tan(const FixedPointInt32& degrees);
         };
     }
 }

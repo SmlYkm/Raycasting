@@ -5,16 +5,16 @@ namespace engine {
         Creature::Creature(
             const math::Vector2D&      position,
             const math::AABB&          hitbox,
-            const math::FixedPointInt& velocity,
+            const math::FixedPointInt32& velocity,
             const math::Vector2D&      direction,
-            const math::FixedPointInt& angle,
-            const math::FixedPointInt& angular_velocity
-        )   : Entity(position, hitbox)
-            , state_m(Idle)
-            , velocity_m(velocity)
-            , direction_m(direction)
-            , angle_m(angle)
-            , angular_velocity_m(angular_velocity) {
+            const math::FixedPointInt32& angle,
+            const math::FixedPointInt32& angular_velocity
+        ) : Entity(position, hitbox), 
+            state_m(Idle), 
+            velocity_m(velocity), 
+            direction_m(direction), 
+            angle_m(angle), 
+            angular_velocity_m(angular_velocity) {
         }
         
         Creature::~Creature() {

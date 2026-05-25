@@ -3,10 +3,10 @@
 namespace engine {
     namespace math {
         
-        AABB::AABB(const Vector2D& topleft, const Vector2D& bottomright) 
-            : topleft_m(Vector2D())      // Fallback Values
-            , bottomright_m(Vector2D()) 
-            , dimensions_m(Vector2D()) {
+        AABB::AABB(const Vector2D& topleft, const Vector2D& bottomright) : 
+            topleft_m(Vector2D()),      // Fallback Values
+            bottomright_m(Vector2D()), 
+            dimensions_m(Vector2D()) {
             if (points_are_valid(topleft, bottomright)) {
                 topleft_m     = topleft;
                 bottomright_m = bottomright;
@@ -14,10 +14,10 @@ namespace engine {
             }
         }
 
-        AABB::AABB(const Vector2D& topleft, const Vector2D& bottomright, const Vector2D& center_coordinates)
-            : topleft_m(Vector2D())
-            , bottomright_m(Vector2D())
-            , dimensions_m(Vector2D()){
+        AABB::AABB(const Vector2D& topleft, const Vector2D& bottomright, const Vector2D& center_coordinates): 
+            topleft_m(Vector2D()), 
+            bottomright_m(Vector2D()), 
+            dimensions_m(Vector2D()){
             if (points_are_valid(topleft, bottomright)) {
                 topleft_m     = topleft;
                 bottomright_m = bottomright;
@@ -26,10 +26,10 @@ namespace engine {
             }
         }
 
-        AABB::AABB(const AABB& other)
-            : topleft_m(other.topleft_m)
-            , bottomright_m(other.bottomright_m)
-            , dimensions_m(other.dimensions_m) {
+        AABB::AABB(const AABB& other) : 
+            topleft_m(other.topleft_m), 
+            bottomright_m(other.bottomright_m), 
+            dimensions_m(other.dimensions_m) {
         }
 
         AABB::~AABB() {

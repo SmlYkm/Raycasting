@@ -4,9 +4,9 @@ namespace engine {
     namespace entities {
         world::Level* Entity::world_p(nullptr);
 
-        Entity::Entity(const math::Vector2D& position, const math::AABB& hitbox) 
-            : position_m(position)
-            , hitbox_m(hitbox) {
+        Entity::Entity(const math::Vector2D& position, const math::AABB& hitbox) : 
+            position_m(position), 
+            hitbox_m(hitbox) {
         }
 
         Entity::~Entity() {

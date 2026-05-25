@@ -33,7 +33,7 @@ namespace engine {
 #endif
 
         public:
-            Level(const char* map_data, const int rows, const int cols);
+            Level(const char* map_data = nullptr, const int rows = 0, const int cols = 0);
             virtual ~Level();
         
         public:

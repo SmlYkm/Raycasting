@@ -1,29 +1,29 @@
 #pragma once
 
-#include "FixedPointInt.hpp"
+#include "FixedPointInt32.hpp"
 
 namespace engine {
     namespace math {
         
         class Vector2D {
         public:
-            FixedPointInt x;
-            FixedPointInt y;
+            FixedPointInt32 x;
+            FixedPointInt32 y;
             
         public:
-            Vector2D(FixedPointInt x_p, FixedPointInt y_p) 
-                : x(x_p)
-                , y(y_p) {
+            Vector2D(FixedPointInt32 x_p, FixedPointInt32 y_p) : 
+                x(x_p), 
+                y(y_p) {
             }
 
-            Vector2D(const Vector2D& other) 
-                : x(other.x)
-                , y(other.y) {
+            Vector2D(const Vector2D& other)  : 
+                x(other.x), 
+                y(other.y) {
             }
 
-            Vector2D() 
-                : x(0) 
-                , y(0) {
+            Vector2D() : 
+                x(0) , 
+                y(0) {
             }
             
             ~Vector2D() {
@@ -31,19 +31,19 @@ namespace engine {
 
             Vector2D get_orthogonal() const { 
                 // Using 0 - x to safely invert the number without needing a unary operator
-                return Vector2D(y, FixedPointInt(0) - x); 
+                return Vector2D(y, FixedPointInt32(0) - x); 
             }
 
-            FixedPointInt length_squared() const { 
+            FixedPointInt32 length_squared() const { 
                 return (x * x) + (y * y); 
             }
 
-            FixedPointInt length() const { 
+            FixedPointInt32 length() const { 
                 return length_squared().sqrt(); 
             }
 
             void normalize() {
-                FixedPointInt len = length();
+                FixedPointInt32 len = length();
                 if (len != 0) {
                     x /= len;
                     y /= len;
@@ -59,17 +59,17 @@ namespace engine {
             }
 
             // Scalar Multiplication
-            Vector2D operator*(FixedPointInt scalar) const {
+            Vector2D operator*(FixedPointInt32 scalar) const {
                 return Vector2D(x * scalar, y * scalar);
             }
 
             // Dot Product
-            FixedPointInt operator*(const Vector2D& other) const {
+            FixedPointInt32 operator*(const Vector2D& other) const {
                 return (x * other.x) + (y * other.y);
             }
             
             // Scalar Division
-            Vector2D operator/(FixedPointInt scalar) const {
+            Vector2D operator/(FixedPointInt32 scalar) const {
                 return Vector2D(x / scalar, y / scalar);
             }
             
@@ -91,13 +91,13 @@ namespace engine {
                 return *this;
             }
 
-            Vector2D& operator*=(FixedPointInt scalar) {
+            Vector2D& operator*=(FixedPointInt32 scalar) {
                 x *= scalar;
                 y *= scalar;
                 return *this;
             }
 
-            Vector2D& operator/=(FixedPointInt scalar) {
+            Vector2D& operator/=(FixedPointInt32 scalar) {
                 x /= scalar;
                 y /= scalar;
                 return *this;
@@ -114,13 +114,13 @@ namespace engine {
 
         // Global scalar multiplication: scalar * Vector
         // 'inline' prevents linker errors when included in multiple translation units!
-        inline Vector2D operator*(FixedPointInt scalar, const Vector2D& vec) {
+        inline Vector2D operator*(FixedPointInt32 scalar, const Vector2D& vec) {
             return vec * scalar;
         }
 
         // Convenience overload: Allows you to type `5 * vec` directly
         inline Vector2D operator*(int scalar, const Vector2D& vec) {
-            return vec * FixedPointInt(scalar, true);
+            return vec * FixedPointInt32(scalar, true);
         }
     }
 }

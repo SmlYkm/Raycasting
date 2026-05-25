@@ -6,11 +6,11 @@ namespace engine{
         Player::Player(
             const math::Vector2D&      position,
             const math::AABB&          hitbox,
-            const math::FixedPointInt& velocity,
+            const math::FixedPointInt32& velocity,
             const math::Vector2D&      direction,
-            const math::FixedPointInt& angle,
-            const math::FixedPointInt& angular_velocity
-        )   : Creature(
+            const math::FixedPointInt32& angle,
+            const math::FixedPointInt32& angular_velocity
+        ) : Creature(
                 position,
                 hitbox,
                 velocity,
@@ -21,10 +21,6 @@ namespace engine{
         }
         
         Player::~Player() {
-        }
-
-        void Player::update() {
-
         }
 
         void Player::update() {

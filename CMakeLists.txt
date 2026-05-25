@@ -2,32 +2,66 @@ cmake_minimum_required(VERSION 3.10)
 project(Raycasting)
 
 ###############################################################################
+## standards ##################################################################
+###############################################################################
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+###############################################################################
 ## source files ###############################################################
 ###############################################################################
 
-# Manually list your engine files
-set(sources_engine
-    engine/src/math/utils.cpp
-    engine/src/math/Trig.cpp
-    engine/src/math/FixedPointInt.cpp
+# Engine sources (ALL of them)
+file(GLOB_RECURSE sources_engine
+    engine/src/*.cpp
 )
 
-# Manually list your game/app files
+# App/game sources
 set(sources
     src/main.cpp
+    src/Level1.cpp
 )
 
 ###############################################################################
-## target definitions #########################################################
+## SDL2 #######################################################################
 ###############################################################################
 
-add_executable(Raycasting ${sources} ${sources_engine})
+find_package(SDL2 REQUIRED)
 
-target_compile_features(Raycasting PUBLIC cxx_std_14)
-target_compile_options(Raycasting PRIVATE -Wall -Wextra -Wfloat-conversion)
-add_compile_options(-fdiagnostics-color=always)
+###############################################################################
+## executable #################################################################
+###############################################################################
+
+add_executable(Raycasting
+    ${sources}
+    ${sources_engine}
+)
+
+###############################################################################
+## includes ###################################################################
+###############################################################################
 
 target_include_directories(Raycasting PUBLIC 
-    ${CMAKE_CURRENT_SOURCE_DIR}/include 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/engine/include
+    ${SDL2_INCLUDE_DIRS}
 )
+
+###############################################################################
+## compile options ############################################################
+###############################################################################
+
+target_compile_options(Raycasting PRIVATE 
+    -Wall 
+    -Wextra 
+    -Wfloat-conversion
+)
+
+add_compile_options(-fdiagnostics-color=always)
+
+###############################################################################
+## linking ####################################################################
+###############################################################################
+
+target_link_libraries(Raycasting PRIVATE ${SDL2_LIBRARIES})

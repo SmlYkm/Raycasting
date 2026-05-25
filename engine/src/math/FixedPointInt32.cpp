@@ -58,6 +58,11 @@ namespace engine {
             return max_m;
         }
 
+        const FixedPointInt32 FixedPointInt32::eps() {
+            static FixedPointInt32 eps_m = FixedPointInt32(1, 6);  // 0.000001 -> 1u 
+            return eps_m;
+        }
+
         const FixedPointInt32 FixedPointInt32::pi() {
             static FixedPointInt32 pi_m = compute_pi();
             return pi_m;

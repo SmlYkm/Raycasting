@@ -1,4 +1,4 @@
-#include "entities/Creature.hpp"
+#include "entities/creatures/Creature.hpp"
 
 namespace engine {
     namespace entities {

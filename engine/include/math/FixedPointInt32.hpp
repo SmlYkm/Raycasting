@@ -21,6 +21,7 @@ namespace engine {
             static const FixedPointInt32 max_factorial_n();
             static const FixedPointInt32 max();
             static const FixedPointInt32 min();
+            static const FixedPointInt32 eps();
             static const FixedPointInt32 pi();
 
         private:

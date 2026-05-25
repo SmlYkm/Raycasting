@@ -5,7 +5,8 @@ namespace engine {
         world::Level* Entity::world_p(nullptr);
 
         Entity::Entity(const math::Vector2D& position, const math::AABB& hitbox) : 
-            position_m(position), 
+            x_m(position.x), 
+            y_m(position.y),
             hitbox_m(hitbox) {
         }
 
@@ -17,11 +18,12 @@ namespace engine {
         }
 
         void Entity::set_position(const math::Vector2D& position) {
-            position_m = position;
+            x_m = position.x;
+            y_m = position.y;
         }
 
-        const math::Vector2D& Entity::get_position() const {
-            return position_m;
+        math::Vector2D Entity::get_position() const {
+            return math::Vector2D(x_m, y_m);
         }
 
         void Entity::set_hitbox(const math::AABB& hitbox) {
@@ -31,5 +33,14 @@ namespace engine {
         const math::AABB& Entity::get_hitbox() const {
             return hitbox_m;
         }
+
+        math::FixedPointInt32 Entity::get_x() const {
+            return x_m;
+        }
+
+        math::FixedPointInt32 Entity::get_y() const {
+            return y_m;
+        }
+
     }
 }

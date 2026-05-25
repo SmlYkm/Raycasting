@@ -1,6 +1,7 @@
 #pragma once
 
 #include "math/AABB.hpp"
+#include "math/FixedPointInt32.hpp"
 #include "world/Level.hpp"
 
 namespace engine {
@@ -10,8 +11,9 @@ namespace engine {
             static world::Level* world_p;
 
         protected:
-            math::Vector2D       position_m;
-            math::AABB           hitbox_m;
+            math::FixedPointInt32 x_m;
+            math::FixedPointInt32 y_m;
+            math::AABB            hitbox_m;
         
         public:
             Entity(
@@ -25,12 +27,15 @@ namespace engine {
         
         public:
             virtual void set_position(const math::Vector2D& position);
-            virtual const math::Vector2D& get_position() const;
+            virtual math::Vector2D get_position() const;
 
             virtual void set_hitbox(const math::AABB& hitbox);
             virtual const math::AABB& get_hitbox() const;
 
             virtual void update() = 0;
+
+            math::FixedPointInt32 get_x() const;
+            math::FixedPointInt32 get_y() const;
         };
     }
 }

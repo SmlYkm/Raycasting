@@ -1,6 +1,8 @@
 #include "math/utils.hpp"
 #include "math/Trig.hpp"
 
+#include <iostream>
+
 namespace engine {
     namespace math {
         const short unsigned int Trig::n_samples(91);
@@ -49,21 +51,19 @@ namespace engine {
         }
 
         const FixedPointInt32 Trig::sin(const int degrees) {
-            // 1. Normalize angle to [0, 359]
-            int angle = degrees % 360;
-            if (angle < 0) angle += 360;
+            int angle = degrees % 360; //[0, 359]
+            while (angle < 0) { 
+                angle += 360;
+            }
 
-            // 2. Exploit symmetry to get the value from the 0-90 array
             if (angle <= 90) {
                 return sin_m[angle];
             } else if (angle <= 180) {
                 return sin_m[180 - angle];
             } else if (angle <= 270) {
-                // Return negative (0 - value) since we don't have a unary minus operator yet
-                return FixedPointInt32(0, true) - sin_m[angle - 180];
-            } else {
-                return FixedPointInt32(0, true) - sin_m[360 - angle];
-            }
+                return sin_m[angle - 180] * -1;
+            } 
+            return sin_m[360 - angle] * -1;
         }
 
         const FixedPointInt32 Trig::sin(const FixedPointInt32& degrees) {

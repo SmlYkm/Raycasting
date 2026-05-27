@@ -16,14 +16,15 @@ namespace engine {
         
         public:
             Trig(Trig const&)           = delete;
+            Trig(Trig const&&)          = delete;
             void operator=(Trig const&) = delete;
+            void operator=(Trig const&&)= delete;
             ~Trig();
 
         private:
             static const FixedPointInt32 *create_sin_m();
 
         public:
-            // Finally, the methods we care about
             static const FixedPointInt32 taylor_sin(const int degrees);
             static const FixedPointInt32 taylor_sin(const FixedPointInt32& degrees);
 

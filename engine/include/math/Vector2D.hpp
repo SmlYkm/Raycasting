@@ -29,32 +29,6 @@ namespace engine {
             ~Vector2D() {
             }
 
-            // Vector2D *clipX(const Vector2D& b, FixedPointInt32 xt) const {  
-            //     FixedPointInt32 xd = b.x - x;
-            //     FixedPointInt32 yd = b.y - y;
-// 
-            //     if (xd * xd < FixedPointInt32::eps()) 
-            //         return nullptr;
-// 
-            //     FixedPointInt32 d = (xt - x) / xd;
-            //     if (d < 0 || d > 1) 
-            //         return nullptr;
-            //     
-            //     return new Vector2D(x+xd*d, y+yd*d);
-            // }
-
-            //Vector2D *clipY(const Vector2D& b, FixedPointInt32 yt) const{  
-            //    FixedPointInt32 yd = b.y - y;
-//
-            //    if (yd * yd < FixedPointInt32::eps()) 
-            //        return nullptr;
-//
-            //    FixedPointInt32 d = (yt - y) / yd;
-            //    if (d < 0 || d > 1) 
-            //        return nullptr;
-            //    return new Vector2D(x+xd*d, y+yd*d);
-            //}
-
             Vector2D get_orthogonal() const { 
                 // Using 0 - x to safely invert the number without needing a unary operator
                 return Vector2D(y, FixedPointInt32(0) - x); 
@@ -82,6 +56,10 @@ namespace engine {
             
             Vector2D operator-(const Vector2D& other) const {
                 return Vector2D(x - other.x, y - other.y);
+            }
+
+            Vector2D operator-() {
+                return Vector2D(-x, -y);
             }
 
             // Scalar Multiplication

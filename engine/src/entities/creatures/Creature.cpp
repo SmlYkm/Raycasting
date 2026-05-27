@@ -1,13 +1,14 @@
 #include "entities/creatures/Creature.hpp"
+#include "math/Trig.hpp"
 
 namespace engine {
     namespace entities {
         Creature::Creature(
-            const math::Vector2D&      position,
-            const math::AABB&          hitbox,
+            const math::Vector2D&        position,
+            const math::AABB&            hitbox,
             const math::FixedPointInt32& velocity,
-            const math::Vector2D&      direction,
-            const math::FixedPointInt32& angle,
+            const math::Vector2D&        direction,
+            int                          angle,
             const math::FixedPointInt32& angular_velocity
         ) : Entity(position, hitbox), 
             state_m(Idle), 
@@ -18,6 +19,19 @@ namespace engine {
         }
         
         Creature::~Creature() {
+        }
+
+        void Creature::norm_angle() {
+            angle_m = angle_m % 360; //[0, 359]
+            while (angle_m < 0) 
+                angle_m += 360;
+        }
+        
+        void Creature::update_direction() {
+            direction_m = math::Vector2D(
+                math::Trig::cos(angle_m),
+                math::Trig::sin(angle_m)
+            );
         }
 
         void Creature::set_state(State new_state) {

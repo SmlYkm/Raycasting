@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Entity.hpp"
+#include "entities/Entity.hpp"
 
 namespace engine {
     namespace entities {
@@ -15,19 +15,19 @@ namespace engine {
             };
 
         protected:
-            State               state_m;
+            State                 state_m;
             math::FixedPointInt32 velocity_m;
-            math::Vector2D      direction_m;
-            math::FixedPointInt32 angle_m;
+            math::Vector2D        direction_m;
+            int                   angle_m;
             math::FixedPointInt32 angular_velocity_m;
 
         public:
             Creature(
-                const math::Vector2D&      position         = math::Vector2D(),
-                const math::AABB&          hitbox           = math::AABB(),
+                const math::Vector2D&        position         = math::Vector2D(),
+                const math::AABB&            hitbox           = math::AABB(),
                 const math::FixedPointInt32& velocity         = math::FixedPointInt32(),
-                const math::Vector2D&      direction        = math::Vector2D(),
-                const math::FixedPointInt32& angle            = math::FixedPointInt32(),
+                const math::Vector2D&        direction        = math::Vector2D(),
+                int                          angle            = 0,
                 const math::FixedPointInt32& angular_velocity = math::FixedPointInt32()
             );
             virtual ~Creature();
@@ -35,6 +35,9 @@ namespace engine {
         public:
             void set_state(State new_state);
             State get_state() const;
+
+            void norm_angle();
+            void update_direction();
 
             virtual void update() = 0;
         };

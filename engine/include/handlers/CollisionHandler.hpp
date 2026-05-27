@@ -12,19 +12,26 @@ namespace engine {
 
         private:
             CollisionHandler();
+            ~CollisionHandler();
             
             CollisionHandler(const CollisionHandler& other) = delete;
-            CollisionHandler(CollisionHandler& other) = delete;
+            CollisionHandler(CollisionHandler& other)       = delete;
             CollisionHandler& operator=(const CollisionHandler& other) = delete;
-            CollisionHandler& operator=(CollisionHandler&& other) = delete;
+            CollisionHandler& operator=(CollisionHandler&& other)      = delete;
 
         public:
-            CollisionHandler *get_instance() const;
+            static CollisionHandler *get_instance();
 
         public:
             void set_world(world::Level *level);
 
             void handle_collision(entities::Entity *moving, entities::Entity *stopped) const;
+            
+        private:
+            bool check_collision(const math::AABB& hitbox) const;
+
+        public:
+            void handle_collision(entities::Entity *entity, const math::AABB& prev_pos) const;
         };
     }
 }

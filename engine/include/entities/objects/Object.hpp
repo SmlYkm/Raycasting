@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Entity.hpp"
+#include "entities/Entity.hpp"
 
 namespace engine {
     namespace entities {

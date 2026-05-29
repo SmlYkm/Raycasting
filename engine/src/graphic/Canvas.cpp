@@ -1,4 +1,7 @@
 #include "graphic/Canvas.hpp"
+#include "graphic/Raycaster.hpp"
+#include "entities/creatures/Player.hpp"
+#include "math/Vector2D.hpp"
 
 namespace engine {
     namespace graphic {
@@ -90,7 +93,7 @@ namespace engine {
                 canvas_m[i] = (height_m / perp_dist).floor().get_int();
                 if (canvas_m[i] > height_m)
                     canvas_m[i] = height_m;
-                    
+
                 camera_pos -= dec;
             }
         }

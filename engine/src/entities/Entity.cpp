@@ -1,5 +1,6 @@
 #include "entities/Entity.hpp"
 #include "handlers/CollisionHandler.hpp"
+#include "world/Level.hpp"
 
 namespace engine {
     namespace entities {

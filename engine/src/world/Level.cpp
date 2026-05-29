@@ -1,4 +1,5 @@
 #include "world/Level.hpp"
+#include "entities/Entity.hpp"
 
 namespace engine {
     namespace world {

@@ -1,12 +1,21 @@
 #pragma once
 
 #include "math/FixedPointInt32.hpp"
-#include "graphic/Raycaster.hpp"
-#include "entities/creatures/Player.hpp"
-#include "world/Level.hpp"
 
 namespace engine {
+    namespace world {
+        class Level;  // Forward declaration
+    }
+
+    namespace entities {
+        namespace creatures {
+            class Player;  // Forward declaration
+        }
+    }
+
     namespace graphic {
+        class Raycaster;  // Forward declaration
+    
         class Canvas {
         private:
             int                   height_m;

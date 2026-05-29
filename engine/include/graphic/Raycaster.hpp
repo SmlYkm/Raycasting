@@ -1,12 +1,20 @@
 #pragma once
 
-#include "math/FixedPointInt32.hpp"
 #include "math/Vector2D.hpp"
-#include "world/Level.hpp"
-#include "entities/creatures/Player.hpp"
 
 namespace engine {
+    namespace world {
+        class Level;  // Forward declaration
+    }
+
+    namespace entities {
+        namespace creatures {
+            class Player;  // Forward declaration
+        }
+    }
+
     namespace graphic {
+
         class Raycaster {
         private:
             bool                        vertical_m;

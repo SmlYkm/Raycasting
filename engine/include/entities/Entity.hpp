@@ -1,14 +1,16 @@
 #pragma once
 
 #include "math/AABB.hpp"
-#include "math/FixedPointInt32.hpp"
-#include "world/Level.hpp"
-// #include "handlers/CollisionHandler.hpp"
 
 namespace engine {
     namespace handlers {
         class CollisionHandler; // forward declaration
     }
+
+    namespace world {
+        class Level;  // Forward declaration
+    }
+    
     namespace entities {
         class Entity {
         protected:

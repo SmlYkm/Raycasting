@@ -1,9 +1,16 @@
 #pragma once
 
-#include "world/Level.hpp"
-#include "entities/Entity.hpp"
+#include "math/AABB.hpp"
 
 namespace engine {
+    namespace world {
+        class Level;  // Forward declaration
+    }
+
+    namespace entities {
+        class Entity;  // Forward declaration
+    }
+
     namespace handlers {
         class CollisionHandler {  // Singleton
         private:

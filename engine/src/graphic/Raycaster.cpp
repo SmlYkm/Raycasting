@@ -1,4 +1,6 @@
 #include "graphic/Raycaster.hpp"
+#include "world/Level.hpp"
+#include "entities/creatures/Player.hpp"
 
 namespace engine {
     namespace graphic{

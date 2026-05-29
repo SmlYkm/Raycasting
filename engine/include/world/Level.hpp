@@ -1,6 +1,5 @@
 #pragma once
 
-#include "math/Vector2D.hpp"
 #include "math/AABB.hpp"
 
 #ifdef USE_LIST

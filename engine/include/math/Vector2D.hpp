@@ -30,8 +30,7 @@ namespace engine {
             }
 
             Vector2D get_orthogonal() const { 
-                // Using 0 - x to safely invert the number without needing a unary operator
-                return Vector2D(y, FixedPointInt32(0) - x); 
+                return Vector2D(y, -x); 
             }
 
             FixedPointInt32 length_squared() const { 
@@ -113,6 +112,22 @@ namespace engine {
 
             bool operator!=(const Vector2D& other) const {
                 return x != other.x || y != other.y;
+            }
+
+            bool operator<(const Vector2D& other) const {
+                return length_squared() < other.length_squared();
+            }
+
+            bool operator<=(const Vector2D& other) const {
+                return length_squared() <= other.length_squared();
+            }
+
+            bool operator>(const Vector2D& other) const {
+                return length_squared() > other.length_squared();
+            }
+
+            bool operator>=(const Vector2D& other) const {
+                return length_squared() >= other.length_squared();
             }
         };
 

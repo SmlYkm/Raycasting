@@ -38,13 +38,13 @@ namespace engine {
             math::FixedPointInt32 upper_overlap = hitbox_moving.y1 - hitbox_static.y0; // (b1.top + b1.height) - b2.top;
             math::FixedPointInt32 lower_overlap = hitbox_static.y1 - hitbox_moving.y0; // (b2.top + b2.height) - b1.top;
 
-            if (left_overlap  < 0)  // Get abs
-                left_overlap  = -left_overlap ;  
-            if (right_overlap < 0)
-                right_overlap = -right_overlap; 
-            if (upper_overlap < 0)
-                upper_overlap = -upper_overlap; 
-            if (lower_overlap < 0)
+            if (left_overlap  < 0)  // Get abs  
+                left_overlap  = -left_overlap ; //(.  )(  .)
+            if (right_overlap < 0)              // \ _||_ /
+                right_overlap = -right_overlap; //  (_||_)
+            if (upper_overlap < 0)              //  (_||_)
+                upper_overlap = -upper_overlap; //  \ || /
+            if (lower_overlap < 0)              
                 lower_overlap = -lower_overlap; 
 
             bool from_left = left_overlap  < right_overlap; // std::abs(left_overlap) < std::abs(right_overlap);

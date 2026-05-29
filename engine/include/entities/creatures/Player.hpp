@@ -12,10 +12,13 @@ namespace engine {
                 const math::AABB&            hitbox           = math::AABB(),
                 const math::FixedPointInt32& velocity         = math::FixedPointInt32(),
                 const math::Vector2D&        direction        = math::Vector2D(),
-                int                          angle            = 0,
+                const math::FixedPointInt32& angle            = math::FixedPointInt32(),
                 const math::FixedPointInt32& angular_velocity = math::FixedPointInt32()
             );
             ~Player();
+
+        private:
+            void update_pos(State dir);
 
         public:
             void update();

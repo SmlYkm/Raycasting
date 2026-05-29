@@ -27,7 +27,7 @@ namespace engine {
 
             void handle_collision(entities::Entity *moving, entities::Entity *stopped) const;
             
-        private:
+        public:
             bool check_collision(const math::AABB& hitbox) const;
 
         public:

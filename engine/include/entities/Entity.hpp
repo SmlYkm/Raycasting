@@ -19,6 +19,7 @@ namespace engine {
             math::FixedPointInt32 x_m;
             math::FixedPointInt32 y_m;
             math::AABB            hitbox_m;
+            math::Vector2D        hitbox_len_m;
         
         public:
             Entity(

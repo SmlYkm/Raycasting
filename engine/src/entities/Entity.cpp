@@ -12,7 +12,11 @@ namespace engine {
         Entity::Entity(const math::Vector2D& position, const math::AABB& hitbox) : 
             x_m(position.x), 
             y_m(position.y),
-            hitbox_m(hitbox) {
+            hitbox_m(hitbox),
+            hitbox_len_m() {
+            hitbox_m.move_to(position);
+            hitbox_len_m.y = hitbox.x1-hitbox.y0;
+            hitbox_len_m.x = hitbox.x1-hitbox.x0;
         }
 
         Entity::~Entity() {

@@ -56,6 +56,8 @@ namespace engine {
             bool intersects_face_y(const Vector2D& v) const;
 
             void set(const AABB& b);
+            void move_to(const Vector2D& pos);
+            void move_to(FixedPointInt32 x, FixedPointInt32 y);
         };
     }
 }

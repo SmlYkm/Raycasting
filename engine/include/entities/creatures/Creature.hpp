@@ -18,7 +18,7 @@ namespace engine {
             State                 state_m;
             math::FixedPointInt32 velocity_m;
             math::Vector2D        direction_m;
-            int                   angle_m;
+            math::FixedPointInt32 angle_m;
             math::FixedPointInt32 angular_velocity_m;
 
         public:
@@ -27,7 +27,7 @@ namespace engine {
                 const math::AABB&            hitbox           = math::AABB(),
                 const math::FixedPointInt32& velocity         = math::FixedPointInt32(),
                 const math::Vector2D&        direction        = math::Vector2D(),
-                int                          angle            = 0,
+                const math::FixedPointInt32& angle            = math::FixedPointInt32(),
                 const math::FixedPointInt32& angular_velocity = math::FixedPointInt32()
             );
             virtual ~Creature();

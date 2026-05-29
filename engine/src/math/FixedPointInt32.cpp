@@ -152,7 +152,7 @@ namespace engine {
         }
 
         FixedPointInt32 FixedPointInt32::operator-() const {
-            return FixedPointInt32(-bits_m);
+            return FixedPointInt32(-bits_m, false);
         }
 
         FixedPointInt32 FixedPointInt32::operator*(const FixedPointInt32 &other) const {

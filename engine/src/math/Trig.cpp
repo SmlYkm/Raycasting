@@ -1,7 +1,7 @@
 #include "math/utils.hpp"
 #include "math/Trig.hpp"
 
-// #include <iostream>
+#include <iostream>
 
 namespace engine {
     namespace math {
@@ -25,7 +25,7 @@ namespace engine {
         }
 
         const FixedPointInt32 Trig::taylor_sin(const FixedPointInt32& degrees) {
-            FixedPointInt32 pi = FixedPointInt32::pi();
+            FixedPointInt32 pi   = FixedPointInt32::pi();
             FixedPointInt32 temp = pi * degrees;
             FixedPointInt32 radians(temp / 180);
             FixedPointInt32 result(0, true);
@@ -52,22 +52,27 @@ namespace engine {
 
         const FixedPointInt32 Trig::sin(const int degrees) {
             int angle = degrees % 360; //[0, 359]
-            while (angle < 0) { 
+            while (angle < 0) 
                 angle += 360;
-            }
 
-            if (angle <= 90) {
+            if (angle <= 90) {                
                 return sin_m[angle];
+
             } else if (angle <= 180) {
-                return sin_m[180 - angle];
+                angle = 180 - angle;
+                return sin_m[angle];
+            
             } else if (angle <= 270) {
-                return -sin_m[angle - 180];
-            } 
-            return -sin_m[360 - angle];
+                angle = angle - 180;
+                return -sin_m[angle];
+            }
+            
+            angle = 360 - angle; 
+            return -sin_m[angle];
         }
 
         const FixedPointInt32 Trig::sin(const FixedPointInt32& degrees) {
-            return sin(degrees.get_int());
+            return sin(degrees.floor().get_int());
         }
 
         const FixedPointInt32 Trig::cos(const int degrees) {
@@ -75,7 +80,7 @@ namespace engine {
         }
 
         const FixedPointInt32 Trig::cos(const FixedPointInt32& degrees) {
-            return cos(degrees.get_int());
+            return cos(degrees.floor().get_int());
         }
 
         const FixedPointInt32 Trig::tan(const int degrees) {
@@ -86,7 +91,7 @@ namespace engine {
         }
 
         const FixedPointInt32 Trig::tan(const FixedPointInt32& degrees) {
-            return tan(degrees.get_int());
+            return tan(degrees.floor().get_int());
         }
     }
 }

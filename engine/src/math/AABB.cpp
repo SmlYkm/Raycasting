@@ -231,5 +231,29 @@ namespace engine {
             this->x1 = b.x1;
             this->y1 = b.y1;
         }
+
+        void AABB::move_to(const Vector2D& pos) {
+            math::FixedPointInt32 delta_y = y1 - y0; 
+            math::FixedPointInt32 delta_x = x1 - x0;
+            math::Vector2D topleft = pos;
+            topleft.x -= delta_x / 2;
+            topleft.y -= delta_y / 2;
+            x0 = topleft.x;
+            x1 = topleft.x + delta_x;
+            y0 = topleft.y;
+            y1 = topleft.y + delta_y;
+        }
+
+        void AABB::move_to(FixedPointInt32 x, FixedPointInt32 y) {
+            math::FixedPointInt32 delta_y = y1 - y0; 
+            math::FixedPointInt32 delta_x = x1 - x0;
+            math::Vector2D topleft = Vector2D(x, y);
+            topleft.x -= delta_x / 2;
+            topleft.y -= delta_y / 2;
+            x0 = topleft.x;
+            x1 = topleft.x + delta_x;
+            y0 = topleft.y;
+            y1 = topleft.y + delta_y;
+        }
     }
 }

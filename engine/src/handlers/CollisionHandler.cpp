@@ -78,58 +78,60 @@ namespace engine {
             math::FixedPointInt32 y1 = hitbox.y1;
 
             return (
-                level_m->is_wall(x0, y0) ||
-                level_m->is_wall(x1, y0) || 
-                level_m->is_wall(x0, y1) ||
-                level_m->is_wall(x1, y1)
+                level_m->is_wall(y0, x0) ||
+                level_m->is_wall(y0, x1) || 
+                level_m->is_wall(y1, x0) ||
+                level_m->is_wall(y1, x1)
             );
         }
 
-        void CollisionHandler::handle_collision(entities::Entity *entity, const math::AABB& prev_pos) const {  // Collision with walls
-            if (!entity || !level_m)
-                return;
-
-            const math::AABB& hitbox = entity->get_hitbox();//x0y0x1y1
-            math::AABB updated_x(
-                hitbox.x0, prev_pos.y0,
-                hitbox.x1, prev_pos.y1
-            );
-            math::AABB updated_y(
-                prev_pos.x0, hitbox.y0,
-                prev_pos.x1, hitbox.y1
-            );
-        
-            math::Vector2D pos(
-                (prev_pos.x0 + prev_pos.x1) / 2,
-                (prev_pos.y0 + prev_pos.y1) / 2
-            );
-            math::FixedPointInt32 x = 0;
-            math::FixedPointInt32 y = 0;
-            bool has_collision = false;
-
-            if (check_collision(updated_x)) {
-                has_collision = true;
-
-                if (updated_x.x0 > prev_pos.x0) {
-                    x = pos.x.ceil()  - math::FixedPointInt32::eps();
-                } else {
-                    x = pos.x.floor() + math::FixedPointInt32::eps();
-                }
-            }
-
-            if (check_collision(updated_y)) {
-                has_collision = true;
-
-                if (updated_y.y0 > prev_pos.y0) {
-                    y = pos.y.ceil()  - math::FixedPointInt32::eps();
-                } else {
-                    y = pos.y.floor() + math::FixedPointInt32::eps();
-                }
-            }
-
-            if (has_collision)
-                entity->set_position(x, y);
-        }
+        //void CollisionHandler::handle_collision(entities::Entity *entity, const math::AABB& prev_pos) const {  // Collision with walls
+        //    if (!entity || !level_m)
+        //        return;
+//
+        //    const math::AABB& hitbox = entity->get_hitbox();//x0y0x1y1
+        //    math::AABB updated_x(
+        //        hitbox.x0, prev_pos.y0,
+        //        hitbox.x1, prev_pos.y1
+        //    );
+        //    math::AABB updated_y(
+        //        prev_pos.x0, hitbox.y0,
+        //        prev_pos.x1, hitbox.y1
+        //    );
+        //
+        //    math::Vector2D pos(
+        //        (prev_pos.x0 + prev_pos.x1) / 2,
+        //        (prev_pos.y0 + prev_pos.y1) / 2
+        //    );
+        //    math::FixedPointInt32 x = pos.x;
+        //    math::FixedPointInt32 y = pos.y;
+        //    bool has_collision_x = false;
+        //    bool has_collision_y = false;
+//
+        //    if (check_collision(updated_x)) {
+        //        has_collision_x = true;
+//
+        //        if (updated_x.x0 > prev_pos.x0) {
+        //            x = pos.x.ceil()  - math::FixedPointInt32::eps();
+        //        } else {
+        //            x = pos.x.floor() + math::FixedPointInt32::eps();
+        //        }
+        //    }
+//
+        //    if (check_collision(updated_y)) {
+        //        has_collision_y = true;
+//
+        //        if (updated_y.y0 > prev_pos.y0) {
+        //            y = pos.y.ceil()  - math::FixedPointInt32::eps();
+        //        } else {
+        //            y = pos.y.floor() + math::FixedPointInt32::eps();
+        //        }
+        //    }
+//
+        //    if (has_collision_x || has_collision_y) {
+        //        entity->set_position(x, y);
+        //    } 
+        //}
 
         // bool Physics::checkCollision(float x, float y, Game::Map* map, float radius) {
         //     return ((map->isWall((int)(x + radius), (int)(y + radius))) ||

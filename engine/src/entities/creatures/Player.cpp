@@ -2,6 +2,8 @@
 #include "entities/creatures/Player.hpp"
 #include "handlers/CollisionHandler.hpp"
 
+#include <iostream>
+
 namespace engine{
     namespace entities {
         Player::Player(
@@ -10,7 +12,7 @@ namespace engine{
             const math::AABB&            hitbox,
             const math::FixedPointInt32& velocity,
             const math::Vector2D&        direction,
-            int                          angle,
+            const math::FixedPointInt32& angle,
             const math::FixedPointInt32& angular_velocity
         ) : Creature(
                 math::Vector2D(x, y),
@@ -31,34 +33,97 @@ namespace engine{
         // Backward,
         // Idle
 
+        void Player::update_pos(State dir) {
+            math::FixedPointInt32 y = y_m;
+            math::FixedPointInt32 x = x_m;
+
+            if (dir == Forward) {
+                y += direction_m.y * velocity_m;
+                x += direction_m.x * velocity_m;
+            } else {
+                y -= direction_m.y * velocity_m;
+                x -= direction_m.x * velocity_m;
+            }
+
+            math::AABB next_x = hitbox_m;
+            math::AABB next_y = hitbox_m;
+            next_x.move_to(x, y_m);
+            next_y.move_to(x_m, y);
+
+            if (!collision_handler_p->check_collision(next_x)) {
+                x_m = x;
+            } else if (x > x_m) {
+                x_m.ceil();
+                x_m -= (math::FixedPointInt32::eps() /*+ hitbox_len_m.x/2*/);
+            } else {
+                x_m.floor(); 
+                x_m += (math::FixedPointInt32::eps() /*+ hitbox_len_m.x/2*/);
+            }
+            
+
+            if (!collision_handler_p->check_collision(next_y)) {
+                y_m = y;
+            } else if (y > y_m) {
+                y_m.ceil();
+                y_m -= (math::FixedPointInt32::eps() /*+ hitbox_len_m.y/2*/);
+            } else {
+                y_m.floor();
+                y_m += (math::FixedPointInt32::eps() /*+ hitbox_len_m.y/2*/);
+            }
+
+            hitbox_m.move_to(x_m, y_m);
+        // void updatePosition(Math::Vector2D<float>& position, float velocity, float angle, Game::Map* map, float radius) {
+        //     float yPos = std::sin(angle) * velocity * (float)deltaTime + position.getY();
+        //     float xPos = std::cos(angle) * velocity * (float)deltaTime + position.getX();
+        // 
+        //     if(!checkCollision(xPos, position.getY(), map, radius)) 
+        //         position.setX(xPos);
+        //     else if(xPos > position.getX())    
+        //         position.setX(ceil(position.getX()) - radius - FLOAT_EPSILON);
+        //     else    
+        //         position.setX(floor(position.getX()) + radius + FLOAT_EPSILON);
+        //     
+        //     if(!checkCollision(position.getX(), yPos, map, radius))    
+        //         position.setY(yPos);
+        //     else if(yPos > position.getY())   
+        //         position.setY(ceil(position.getY()) - radius - FLOAT_EPSILON);
+        //     else  
+        //         position.setY(floor(position.getY()) + radius + FLOAT_EPSILON);
+        // }
+        }
+
         void Player::update() {
             math::AABB prev_pos(hitbox_m);
             switch (state_m) {
             case Forward:
-                move(direction_m*velocity_m);
-                collision_handler_p->handle_collision(this, prev_pos);
+                update_pos(Forward);
+                std::cout << "F" << std::endl;
                 break;
             
             case Backward:
-                move(-direction_m*velocity_m);
-                collision_handler_p->handle_collision(this, prev_pos);
+                update_pos(Backward);
+                std::cout << "B" << std::endl;
                 break;
             
             case Right:
-                angle_m -= velocity_m;
+                angle_m -= angular_velocity_m;
                 norm_angle();
                 update_direction();
+                std::cout << "R" << std::endl;
                 break;
 
             case Left:
-                angle_m += velocity_m;
+                angle_m += angular_velocity_m;
                 norm_angle();
                 update_direction();
+                std::cout << "L" << std::endl;
                 break;
 
             default:
                 break;
             }
+            std::cout << collision_handler_p->check_collision(hitbox_m) << std::endl;
+            std::cout << x_m << " " << y_m << " " << angle_m << " " << direction_m.x << " " << direction_m.y << std::endl;
         }
     }
 }

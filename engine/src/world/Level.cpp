@@ -49,7 +49,7 @@ namespace engine {
             int  grid_x = position.x.floor().get_int();
             int  grid_y = position.y.floor().get_int();
             char tile   = get_tile(grid_y, grid_x);
-            
+            std::cout << tile;
             return tile != ' '; 
         }
 

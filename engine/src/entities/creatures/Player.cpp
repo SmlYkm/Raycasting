@@ -98,33 +98,27 @@ namespace engine{
                 switch (state_m) {
                 case Forward:
                     update_pos(Forward);
-                    std::cout << "F" << std::endl;
                     break;
                 
                 case Backward:
                     update_pos(Backward);
-                    std::cout << "B" << std::endl;
                     break;
                 
                 case Right:
                     angle_m -= angular_velocity_m;
                     norm_angle();
                     update_direction();
-                    std::cout << "R" << std::endl;
                     break;
 
                 case Left:
                     angle_m += angular_velocity_m;
                     norm_angle();
                     update_direction();
-                    std::cout << "L" << std::endl;
                     break;
 
                 default:
                     break;
                 }
-                std::cout << collision_handler_p->check_collision(hitbox_m) << std::endl;
-                std::cout << x_m << " " << y_m << " " << angle_m << " " << direction_m.x << " " << direction_m.y << std::endl;
             }
         }
     }

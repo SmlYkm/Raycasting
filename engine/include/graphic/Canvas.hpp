@@ -1,26 +1,28 @@
 #pragma once
 
 #include "math/FixedPointInt32.hpp"
+#include "math/Vector2D.hpp"
 
 namespace engine {
     namespace world {
-        class Level;  // Forward declaration
+        class Level;  
     }
 
     namespace entities {
         namespace creatures {
-            class Player;  // Forward declaration
+            class Player;  
         }
     }
 
     namespace graphic {
-        class Raycaster;  // Forward declaration
+        class Raycaster;  
     
         class Canvas {
         private:
             int                   height_m;
             int                   width_m;
             int                  *canvas_m;
+            math::Vector2D       *ray_hits_m; // <-- Added to store hit positions
             Raycaster            *raycaster_m;
             math::FixedPointInt32 camera_width_m;
             entities::creatures::Player *player_m;
@@ -49,6 +51,7 @@ namespace engine {
 
         public:
             int operator[](const int idx) const;
+            math::Vector2D get_ray_hit(const int idx) const; // <-- Added getter
             void update();
         };
     }

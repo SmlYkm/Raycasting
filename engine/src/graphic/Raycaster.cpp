@@ -6,132 +6,116 @@
 
 namespace engine {
     namespace graphic{
-            Raycaster *Raycaster::instance_p(nullptr);
+        Raycaster *Raycaster::instance_p(nullptr);
 
-            Raycaster::Raycaster() : 
-                vertical_m(false),
-                level_m(nullptr),
-                player_m(nullptr) {  // fallback
+        Raycaster::Raycaster() : 
+            vertical_m(false),
+            level_m(nullptr),
+            player_m(nullptr) {  // fallback
+        }
+
+        Raycaster::~Raycaster() {
+            level_m  = nullptr;
+            player_m = nullptr;
+            if (instance_p)
+                delete instance_p;
+            instance_p = nullptr;
+        }
+
+        Raycaster *Raycaster::get_instance() {
+            if (!instance_p)
+                instance_p = new Raycaster();
+            return instance_p;
+        }
+
+        void Raycaster::set_level(world::Level *level) {
+            level_m = level;
+        }
+
+        void Raycaster::set_player(entities::creatures::Player *player) {
+            player_m = player;
+        }
+
+        bool Raycaster::hit_is_vertical() const {
+            return vertical_m;
+        }
+
+        math::Vector2D Raycaster::dda(const math::Vector2D& camera) {
+            if (!level_m || !player_m)
+                return math::Vector2D(-1, -1);
+            
+            const math::Vector2D& position = player_m->get_position();
+            
+            // if ((camera.y-position.y).abs() < math::FixedPointInt32::greater_eps()){
+            //     std::cout << "ddah" << std::endl;
+            //     return dda_h(camera);
+            // }
+            // 
+            // if ((camera.x-position.x).abs() < math::FixedPointInt32::greater_eps()) {
+            //     std::cout << "ddav" << std::endl;
+            //     return dda_v(camera);
+            // }
+
+            math::FixedPointInt32 slope = (camera.y - position.y) / (camera.x - position.x);
+
+            math::FixedPointInt32 vertical_x = 0;  // Vertical
+            math::FixedPointInt32 vertical_y = position.y.floor() + 1;
+    
+
+            math::FixedPointInt32 vertical_delta_x = 0;
+            math::FixedPointInt32 vertical_delta_y = 1;
+
+            if (camera.y < position.y) {  // Facing down
+                vertical_y -= (math::FixedPointInt32::eps() + 1);
+                vertical_delta_y = -1;
             }
 
-            Raycaster::~Raycaster() {
-                level_m  = nullptr;
-                player_m = nullptr;
-                if (instance_p)
-                    delete instance_p;
-                instance_p = nullptr;
+            vertical_x = (vertical_y - position.y)/slope + position.x;
+            vertical_delta_x = vertical_delta_y / slope;
+
+
+            math::FixedPointInt32 horizontal_x = position.x.floor()+1;  // Horizontal
+            math::FixedPointInt32 horizontal_y = 0;
+            math::FixedPointInt32 horizontal_delta_x = 1;
+            math::FixedPointInt32 horizontal_delta_y = 0;
+
+            if (camera.x < position.x) {  // Facing right
+                horizontal_x -= (math::FixedPointInt32::eps() + 1);
+                horizontal_delta_x = -1;
             }
 
-            Raycaster *Raycaster::get_instance() {
-                if (!instance_p)
-                    instance_p = new Raycaster();
-                return instance_p;
-            }
+            horizontal_y = (horizontal_x - position.x)*slope + position.y;
+            horizontal_delta_y = horizontal_delta_x * slope;
 
-            void Raycaster::set_level(world::Level *level) {
-                level_m = level;
-            }
+            math::Vector2D horizontal_delta(  // DDA
+                horizontal_delta_x, 
+                horizontal_delta_y
+            );
+            math::Vector2D vertical_delta(
+                vertical_delta_x,
+                vertical_delta_y
+            );
 
-            void Raycaster::set_player(entities::creatures::Player *player) {
-                player_m = player;
-            }
+            math::Vector2D vertical_pos(vertical_x, vertical_y);
+            math::Vector2D horizontal_pos(horizontal_x, horizontal_y);
 
-            bool Raycaster::hit_is_vertical() const {
-                return vertical_m;
-            }
+            math::Vector2D hit_pos(-1, -1);  // fallback
+            
 
-            math::Vector2D Raycaster::dda(const math::Vector2D& camera) {
-                std::cout << "camera = " << camera << std::endl;
-                if (!level_m || !player_m)
-                    return math::Vector2D(-1, -1);
-
-                const math::Vector2D& position = player_m->get_position();
-                math::FixedPointInt32 slope = (camera.y - position.x) / (camera.x - position.y);
-
-    //        float verticalX, verticalY = floor(castingPos.getY()) + 1.0f;
-    //        float verticalDeltaX, verticalDeltaY = 1.0f;
-    //
-    //        if(cameraPoint.getY() < castingPos.getY()) {    // Facing downward
-    //            verticalY -= (FLOAT_EPSILON + 1.0f);
-    //            verticalDeltaY = -1.0f;
-    //        }
-    //
-    //        // Line equation used to find the x position in the first iteration
-    //        verticalX = (verticalY - castingPos.getY()) / slope + castingPos.getX();
-    //        verticalDeltaX = verticalDeltaY / slope;
-
-                math::FixedPointInt32 vertical_x = 0;  // Vertical
-                math::FixedPointInt32 vertical_y = position.y;
-                vertical_y.floor();
-                ++vertical_y;
-
-                std::cout << "vertical_y = " << vertical_y << std::endl; 
-                math::FixedPointInt32 vertical_delta_x = 0;
-                math::FixedPointInt32 vertical_delta_y = 1;
-
-                if (camera.y < position.y) {  // Facing down
-                    vertical_y -= (math::FixedPointInt32::eps() + 1);
-                    vertical_delta_y = -1;
+            do {
+                if ((horizontal_pos-position) < (vertical_pos-position)) {
+                    hit_pos         = horizontal_pos;
+                    horizontal_pos += horizontal_delta;
+                    vertical_m      = false;
+                } else {
+                    hit_pos       = vertical_pos;
+                    vertical_pos += vertical_delta;
+                    vertical_m    = true;
                 }
-                std::cout << "vertical_y = " << vertical_y << std::endl;
-                std::cout << "vertical_delta_y = " << vertical_delta_y << std::endl;
-                std::cout << "slope =" << slope << std::endl;
-                std::cout << "position.y = " << position.y << std::endl;
-                std::cout << "position.x = " << position.x << std::endl;
-
-                vertical_x = (vertical_y - position.y)/slope + position.x;
-                vertical_delta_x = vertical_delta_y / slope;
-
-                std::cout << "vertical_x = " << vertical_x << std::endl;
-                std::cout << "vertical_delta_x = " << vertical_delta_x << std::endl;
-
-                math::FixedPointInt32 horizontal_x = position.x;  // Horizontal
-                horizontal_x.floor();
-                ++horizontal_x;
-                math::FixedPointInt32 horizontal_y = 0;
-                math::FixedPointInt32 horizontal_delta_x = 1;
-                math::FixedPointInt32 horizontal_delta_y = 0;
-
-                if (camera.x < position.x) {  // Facing right
-                    horizontal_x -= (math::FixedPointInt32::eps() + 1);
-                    horizontal_delta_x = -1;
-                }
-
-                horizontal_y = (horizontal_x - position.x)*slope + position.y;
-                horizontal_delta_y = horizontal_delta_x * slope;
-
-                math::Vector2D horizontal_delta(  // DDA
-                    horizontal_delta_x, 
-                    horizontal_delta_y
-                );
-                math::Vector2D vertical_delta(
-                    vertical_delta_x,
-                    vertical_delta_y
-                );
-
-                math::Vector2D vertical_pos(vertical_x, vertical_y);
-                math::Vector2D horizontal_pos(horizontal_x, horizontal_y);
-
-                math::Vector2D hit_pos(-1, -1);  // fallback
-                std::cout << "horizontal delta = " << horizontal_delta;
-                std::cout << "vertical delta = " << vertical_delta << std::endl;
-                
-
-                do {
-                    if ((horizontal_pos-position) < (vertical_pos-position)) {
-                        hit_pos         = horizontal_pos;
-                        horizontal_pos += horizontal_delta;
-                        vertical_m      = false;
-                    } else {
-                        hit_pos       = vertical_pos;
-                        vertical_pos += vertical_delta;
-                        vertical_m    = true;
-                    }
-                    std::cout << hit_pos << std::endl;
-                } while (!level_m->is_wall(hit_pos));
-                
-                return hit_pos;
-            }
+            } while (!level_m->is_wall(hit_pos));
+            
+            return hit_pos;
+        }
 
     //    Math::Vector2D<float> Raycaster::castRay(const Math::Vector2D<float>& castingPos,const Math::Vector2D<float>& cameraPoint, Game::Map* map) {
     //        float slope = (cameraPoint.getY() - castingPos.getY()) / ((cameraPoint.getX() - castingPos.getX()));   
@@ -194,5 +178,76 @@ namespace engine {
     //
     //        return hitPos;
     //    }
+
+
+
+        math::Vector2D Raycaster::dda_v(const math::Vector2D& camera){
+            if (!level_m || !player_m)
+                return math::Vector2D(-1, -1);
+
+            vertical_m = true;
+            const math::Vector2D& position = player_m->get_position();
+
+            math::FixedPointInt32 vertical_x = 0;  // Vertical
+            math::FixedPointInt32 vertical_y = position.y.floor() + 1;
+    
+
+            math::FixedPointInt32 vertical_delta_x = 0;
+            math::FixedPointInt32 vertical_delta_y = 1;
+
+            if (camera.y < position.y) {  // Facing down
+                vertical_y -= (math::FixedPointInt32::eps() + 1);
+                vertical_delta_y = -1;
+            }
+
+            vertical_x = position.x;
+
+
+            math::Vector2D vertical_delta(
+                vertical_delta_x,
+                vertical_delta_y
+            );
+
+            math::Vector2D vertical_pos(vertical_x, vertical_y);
+            
+            do {
+                vertical_pos += vertical_delta;
+            } while (!level_m->is_wall(vertical_pos));
+
+            return vertical_pos;
+        }
+
+        math::Vector2D Raycaster::dda_h(const math::Vector2D& camera){
+            vertical_m = false;
+            const math::Vector2D& position = player_m->get_position();
+            math::FixedPointInt32 horizontal_x = position.x.floor()+1;  // Horizontal
+            math::FixedPointInt32 horizontal_y = 0;
+            math::FixedPointInt32 horizontal_delta_x = 1;
+            math::FixedPointInt32 horizontal_delta_y = 0;
+
+            if (camera.x < position.x) {  // Facing right
+                horizontal_x -= (math::FixedPointInt32::eps() + 1);
+                horizontal_delta_x = -1;
+            }
+
+            horizontal_y = position.y;
+
+            math::Vector2D horizontal_delta(  // DDA
+                horizontal_delta_x, 
+                horizontal_delta_y
+            );
+
+
+            math::Vector2D horizontal_pos(horizontal_x, horizontal_y);            
+
+            do {
+                horizontal_pos += horizontal_delta;
+            } while (!level_m->is_wall(horizontal_pos));
+            
+            return horizontal_pos;
+
+        }
+
+
     }
 }

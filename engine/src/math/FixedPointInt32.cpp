@@ -63,6 +63,11 @@ namespace engine {
             return eps_m;
         }
 
+        const FixedPointInt32 FixedPointInt32::greater_eps() {
+            static FixedPointInt32 eps_m = FixedPointInt32(0x0000000F, false);  // 0.000001 -> 1u 
+            return eps_m;
+        }
+
         const FixedPointInt32 FixedPointInt32::pi() {
             static FixedPointInt32 pi_m = compute_pi();
             return pi_m;
@@ -436,6 +441,12 @@ namespace engine {
                 out << "0";
             out << frac;
             return out;
+        }
+
+        FixedPointInt32 FixedPointInt32::abs() const {
+            if (bits_m < 0)
+                return FixedPointInt32(-bits_m);
+            return *this;
         }
     }
 }

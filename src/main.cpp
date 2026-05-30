@@ -21,8 +21,6 @@ using namespace engine;
 using namespace engine::math;
 
 int main() {
-    // Suppressed the 360-line trig output for cleaner terminal testing
-    
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError() << "\n";
         return 1;
@@ -85,13 +83,24 @@ int main() {
         
         player.set_state(entities::creatures::Creature::Idle);
 
-        if (keys[SDL_SCANCODE_W]) player.set_state(entities::creatures::Creature::Forward);
-        else if (keys[SDL_SCANCODE_S]) player.set_state(entities::creatures::Creature::Backward);
-        else if (keys[SDL_SCANCODE_A]) player.set_state(entities::creatures::Creature::Left);
-        else if (keys[SDL_SCANCODE_D]) player.set_state(entities::creatures::Creature::Right);
+        if (keys[SDL_SCANCODE_W]) { 
+            player.set_state(entities::creatures::Creature::Forward);
+            player.update();
+        }
+        if (keys[SDL_SCANCODE_S]) { 
+            player.set_state(entities::creatures::Creature::Backward);
+            player.update();
+        }
+        if (keys[SDL_SCANCODE_A]) { 
+            player.set_state(entities::creatures::Creature::Left);
+            player.update();
+        }
+        if (keys[SDL_SCANCODE_D]) { 
+            player.set_state(entities::creatures::Creature::Right);
+            player.update();
+        }
 
         // --- 2. Update Systems ---
-        player.update();
         canvas->update();
 
         // --- 3. Render ---
@@ -109,10 +118,24 @@ int main() {
             }
         }
 
-        // Leveraging the FixedPointInt32 math overloads directly
         int px = (player.get_x() * TILE_SIZE).get_int();
         int py = (player.get_y() * TILE_SIZE).get_int();
-        
+
+        // --- NEW: Render Rays ---
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND); // Enable alpha blending
+        SDL_SetRenderDrawColor(renderer, 255, 255, 0, 50);         // Transparent yellow
+
+        for (int i = 0; i < VIEWPORT_WIDTH; ++i) {
+            Vector2D hit = canvas->get_ray_hit(i);
+            if (hit.x != -1) { // -1 is our fallback invalid vector
+                int hx = (hit.x * TILE_SIZE).get_int();
+                int hy = (hit.y * TILE_SIZE).get_int();
+                SDL_RenderDrawLine(renderer, px, py, hx, hy);
+            }
+        }
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE); // Disable blending
+        // ------------------------
+
         AABB hb = player.get_hitbox();
         int hw = ((hb.x1 - hb.x0) * TILE_SIZE).get_int();
         int hh = ((hb.y1 - hb.y0) * TILE_SIZE).get_int();
@@ -121,7 +144,6 @@ int main() {
         SDL_Rect playerRect = { px - (hw/2), py - (hh/2), hw, hh };
         SDL_RenderFillRect(renderer, &playerRect);
 
-        // Render Direction line using the existing getter
         Vector2D dir = player.get_direction();
         int line_end_x = px + (dir.x * TILE_SIZE).get_int();
         int line_end_y = py + (dir.y * TILE_SIZE).get_int();
@@ -132,27 +154,23 @@ int main() {
         // ==== RIGHT HALF: 3D Raycast View ====
         for (int i = 0; i < VIEWPORT_WIDTH; ++i) {
             int line_height = (*canvas)[i];
-            if (line_height < 0) line_height = 0; // Guard against negative bounds
+            if (line_height < 0) line_height = 0; 
 
-            // Ceiling
-            SDL_SetRenderDrawColor(renderer, 50, 50, 100, 255);
+            SDL_SetRenderDrawColor(renderer, 50, 50, 100, 255); // Ceiling
             SDL_RenderDrawLine(renderer, VIEWPORT_WIDTH + i, 0, VIEWPORT_WIDTH + i, (WINDOW_HEIGHT - line_height) / 2);
 
-            // Wall
-            SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
+            SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255); // Wall
             SDL_RenderDrawLine(renderer, VIEWPORT_WIDTH + i, (WINDOW_HEIGHT - line_height) / 2, VIEWPORT_WIDTH + i, (WINDOW_HEIGHT + line_height) / 2);
 
-            // Floor
-            SDL_SetRenderDrawColor(renderer, 50, 100, 50, 255);
+            SDL_SetRenderDrawColor(renderer, 50, 100, 50, 255); // Floor
             SDL_RenderDrawLine(renderer, VIEWPORT_WIDTH + i, (WINDOW_HEIGHT + line_height) / 2, VIEWPORT_WIDTH + i, WINDOW_HEIGHT);
         }
 
-        // UI Separator Line
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderDrawLine(renderer, VIEWPORT_WIDTH, 0, VIEWPORT_WIDTH, WINDOW_HEIGHT);
 
         SDL_RenderPresent(renderer);
-        SDL_Delay(16); // ~60fps
+        SDL_Delay(16);
     }
 
     SDL_DestroyRenderer(renderer);

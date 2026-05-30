@@ -22,6 +22,7 @@ namespace engine {
             static const FixedPointInt32 max();
             static const FixedPointInt32 min();
             static const FixedPointInt32 eps();
+            static const FixedPointInt32 greater_eps();
             static const FixedPointInt32 pi();
 
         private:
@@ -112,6 +113,7 @@ namespace engine {
             FixedPointInt32 factorial();
             FixedPointInt32 floor() const;
             FixedPointInt32 ceil() const;
+            FixedPointInt32 abs() const;
 
             friend std::ostream& operator<<(std::ostream &out, const FixedPointInt32 &n);  // cout overload
         };

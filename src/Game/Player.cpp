@@ -2,7 +2,6 @@
 #include "Math/Physics.hpp"
 #include "Math/Constants.hpp"
 
-#include <SFML/Graphics.hpp>
 #include <cmath>
 
 namespace Game {

@@ -9,11 +9,10 @@ namespace engine {
             rows_m(rows), 
             cols_m(cols),
 #ifdef USE_LIST
-            entities_list_m()
+            entities_list_m() {
 #else
-            entities_count_m(0)
+            entities_count_m(0) {
 #endif
-        {
             // Input validation
             if (rows < 3 || cols < 3 || map_data == nullptr) {
                 rows_m = 0;
@@ -34,10 +33,9 @@ namespace engine {
         }
         
         Level::~Level() {
-            if (world_m) {
+            if (world_m)
                 delete[] world_m;
-                world_m = nullptr;
-            }
+            world_m = nullptr;
         }
     
         char Level::get_tile(const int row, const int col) const {

@@ -45,16 +45,25 @@ namespace engine {
                 return math::Vector2D(-1, -1);
             
             const math::Vector2D& position = player_m->get_position();
+
+            if (
+                (camera.y - position.y).abs() <= math::FixedPointInt32::greater_eps() ||
+                (camera.x - position.x).abs() <= math::FixedPointInt32::greater_eps()
+            ) {
+                std::cout << "camera = " << camera <<" position = "<< position << std::endl;
+                std::cout << "(camera.y - position.y).abs() = " << (camera.y - position.y).abs() << std::endl;
+                std::cout << "(camera.x - position.x).abs() = " << (camera.x - position.x).abs() << std::endl;
+            }
+
+            if ((camera.y-position.y).abs() <= math::FixedPointInt32::greater_eps()){
+                std::cout << "ddah" << std::endl;
+                return dda_h(camera);
+            }
             
-            // if ((camera.y-position.y).abs() < math::FixedPointInt32::greater_eps()){
-            //     std::cout << "ddah" << std::endl;
-            //     return dda_h(camera);
-            // }
-            // 
-            // if ((camera.x-position.x).abs() < math::FixedPointInt32::greater_eps()) {
-            //     std::cout << "ddav" << std::endl;
-            //     return dda_v(camera);
-            // }
+            if ((camera.x-position.x).abs() <= math::FixedPointInt32::greater_eps()) {
+                std::cout << "ddav" << std::endl;
+                return dda_v(camera);
+            }
 
             math::FixedPointInt32 slope = (camera.y - position.y) / (camera.x - position.x);
 
@@ -188,7 +197,7 @@ namespace engine {
             vertical_m = true;
             const math::Vector2D& position = player_m->get_position();
 
-            math::FixedPointInt32 vertical_x = 0;  // Vertical
+            math::FixedPointInt32 vertical_x = position.x;  // Vertical
             math::FixedPointInt32 vertical_y = position.y.floor() + 1;
     
 
@@ -200,9 +209,6 @@ namespace engine {
                 vertical_delta_y = -1;
             }
 
-            vertical_x = position.x;
-
-
             math::Vector2D vertical_delta(
                 vertical_delta_x,
                 vertical_delta_y
@@ -210,9 +216,9 @@ namespace engine {
 
             math::Vector2D vertical_pos(vertical_x, vertical_y);
             
-            do {
+            while (!level_m->is_wall(vertical_pos)) {
                 vertical_pos += vertical_delta;
-            } while (!level_m->is_wall(vertical_pos));
+            }
 
             return vertical_pos;
         }
@@ -221,7 +227,7 @@ namespace engine {
             vertical_m = false;
             const math::Vector2D& position = player_m->get_position();
             math::FixedPointInt32 horizontal_x = position.x.floor()+1;  // Horizontal
-            math::FixedPointInt32 horizontal_y = 0;
+            math::FixedPointInt32 horizontal_y = position.y;
             math::FixedPointInt32 horizontal_delta_x = 1;
             math::FixedPointInt32 horizontal_delta_y = 0;
 
@@ -230,7 +236,6 @@ namespace engine {
                 horizontal_delta_x = -1;
             }
 
-            horizontal_y = position.y;
 
             math::Vector2D horizontal_delta(  // DDA
                 horizontal_delta_x, 
@@ -239,10 +244,11 @@ namespace engine {
 
 
             math::Vector2D horizontal_pos(horizontal_x, horizontal_y);            
-
-            do {
+            // if (level_m->is_wall(horizontal_pos))
+            //     return horizontal_pos;
+            while (!level_m->is_wall(horizontal_pos)) {
                 horizontal_pos += horizontal_delta;
-            } while (!level_m->is_wall(horizontal_pos));
+            }
             
             return horizontal_pos;
 

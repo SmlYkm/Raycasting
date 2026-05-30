@@ -93,6 +93,12 @@ namespace engine {
                 math::FixedPointInt32 perp_dist = (hit_pos - player_pos) * player_dir;
                 
                 canvas_m[i] = (height_m / perp_dist).floor().get_int();
+
+                // if (canvas_m[i] < 5) {
+                //     std::cout << ray_hits_m[i] << std::endl;
+                //     math::FixedPointInt32 perp_dist = (hit_pos - player_pos) * player_dir;
+                // } 
+
                 if (canvas_m[i] > height_m) canvas_m[i] = height_m;
 
                 camera_pos -= dec;

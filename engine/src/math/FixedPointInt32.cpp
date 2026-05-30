@@ -64,7 +64,7 @@ namespace engine {
         }
 
         const FixedPointInt32 FixedPointInt32::greater_eps() {
-            static FixedPointInt32 eps_m = FixedPointInt32(0x0000000F, false);  // 0.000001 -> 1u 
+            static FixedPointInt32 eps_m = FixedPointInt32(5, 3);  // 0.05 -> 1u 
             return eps_m;
         }
 
@@ -444,8 +444,10 @@ namespace engine {
         }
 
         FixedPointInt32 FixedPointInt32::abs() const {
+            if ((bits_m ^ 0xFFFFFFFF) == 0x00000000)  // Returning -bits_m would overflow
+                return FixedPointInt32(0x7FFFFFFF, false); 
             if (bits_m < 0)
-                return FixedPointInt32(-bits_m);
+                return FixedPointInt32(-bits_m, false);
             return *this;
         }
     }

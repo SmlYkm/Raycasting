@@ -54,22 +54,22 @@ namespace engine{
                 if (!collision_handler_p->check_collision(next_x)) {
                     x_m = x;
                 } else if (x > x_m) {
-                    x_m.ceil();
-                    x_m -= (math::FixedPointInt32::eps() /*+ hitbox_len_m.x/2*/);
+                    x_m = x_m.ceil();
+                    x_m -= (math::FixedPointInt32::eps() + hitbox_len_m.x/2);
                 } else {
-                    x_m.floor(); 
-                    x_m += (math::FixedPointInt32::eps() /*+ hitbox_len_m.x/2*/);
+                    x_m = x_m.floor(); 
+                    x_m += (math::FixedPointInt32::eps() + hitbox_len_m.x/2);
                 }
                 
 
                 if (!collision_handler_p->check_collision(next_y)) {
                     y_m = y;
                 } else if (y > y_m) {
-                    y_m.ceil();
-                    y_m -= (math::FixedPointInt32::eps() /*+ hitbox_len_m.y/2*/);
+                    y_m = y_m.ceil();
+                    y_m -= (math::FixedPointInt32::eps() + hitbox_len_m.y/2);
                 } else {
-                    y_m.floor();
-                    y_m += (math::FixedPointInt32::eps() /*+ hitbox_len_m.y/2*/);
+                    y_m = y_m.floor();
+                    y_m += (math::FixedPointInt32::eps() + hitbox_len_m.y/2);
                 }
 
                 hitbox_m.move_to(x_m, y_m);

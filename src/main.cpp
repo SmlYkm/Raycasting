@@ -68,7 +68,7 @@ int main() {
     canvas->set_level(&level);
     canvas->set_canvas_width(VIEWPORT_WIDTH); // Canvas handles the 3D half
     canvas->set_canvas_height(WINDOW_HEIGHT);
-    canvas->set_camera_len(FixedPointInt32(66, 2)); // 0.66 standard FOV plane
+    canvas->set_camera_len(FixedPointInt32(52, 2)); // 0.66 standard FOV plane
 
     bool quit = false;
     SDL_Event e;

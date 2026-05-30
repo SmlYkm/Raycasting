@@ -59,7 +59,7 @@ namespace engine {
         }
 
         const FixedPointInt32 FixedPointInt32::eps() {
-            static FixedPointInt32 eps_m = FixedPointInt32(1, 6);  // 0.000001 -> 1u 
+            static FixedPointInt32 eps_m = FixedPointInt32(0x00000001, false);  // 0.000001 -> 1u 
             return eps_m;
         }
 
@@ -169,9 +169,11 @@ namespace engine {
         }
 
         FixedPointInt32 FixedPointInt32::operator/(const FixedPointInt32 &other) const {
-            if (other.bits_m == 0)
-                throw std::runtime_error("Division by 0!\n");
-
+            if (other.bits_m == 0) {
+                std::cout << "Division by 0" << std::endl;
+                return FixedPointInt32(0x7FFFFFFF, false);  // Max possible value
+                // throw std::runtime_error("Division by 0!\n");
+            }
             int64_t temp = (int64_t)(bits_m) << 16;
             return FixedPointInt32((int32_t)(temp / other.bits_m), false);
         }
@@ -236,9 +238,12 @@ namespace engine {
         }
 
         FixedPointInt32& FixedPointInt32::operator/=(const FixedPointInt32 &other) {
-            if (other.bits_m == 0)
-                throw std::runtime_error("Division by 0!\n");
-
+            if (other.bits_m == 0) {
+                std::cout << "Division by 0" << std::endl;
+                *this = FixedPointInt32(0x7FFFFFFF, false);  // Max possible value
+                return *this;
+                // throw std::runtime_error("Division by 0!\n");
+            }
             *this = *this / other;
             return *this;
         }

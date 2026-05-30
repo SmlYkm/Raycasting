@@ -2,6 +2,8 @@
 #include "world/Level.hpp"
 #include "entities/creatures/Player.hpp"
 
+#include <iostream>
+
 namespace engine {
     namespace graphic{
             Raycaster *Raycaster::instance_p(nullptr);
@@ -39,26 +41,49 @@ namespace engine {
             }
 
             math::Vector2D Raycaster::dda(const math::Vector2D& camera) {
+                std::cout << "camera = " << camera << std::endl;
                 if (!level_m || !player_m)
                     return math::Vector2D(-1, -1);
 
-                math::Vector2D position = player_m->get_position();
+                const math::Vector2D& position = player_m->get_position();
                 math::FixedPointInt32 slope = (camera.y - position.x) / (camera.x - position.y);
+
+    //        float verticalX, verticalY = floor(castingPos.getY()) + 1.0f;
+    //        float verticalDeltaX, verticalDeltaY = 1.0f;
+    //
+    //        if(cameraPoint.getY() < castingPos.getY()) {    // Facing downward
+    //            verticalY -= (FLOAT_EPSILON + 1.0f);
+    //            verticalDeltaY = -1.0f;
+    //        }
+    //
+    //        // Line equation used to find the x position in the first iteration
+    //        verticalX = (verticalY - castingPos.getY()) / slope + castingPos.getX();
+    //        verticalDeltaX = verticalDeltaY / slope;
 
                 math::FixedPointInt32 vertical_x = 0;  // Vertical
                 math::FixedPointInt32 vertical_y = position.y;
                 vertical_y.floor();
                 ++vertical_y;
+
+                std::cout << "vertical_y = " << vertical_y << std::endl; 
                 math::FixedPointInt32 vertical_delta_x = 0;
                 math::FixedPointInt32 vertical_delta_y = 1;
 
                 if (camera.y < position.y) {  // Facing down
                     vertical_y -= (math::FixedPointInt32::eps() + 1);
-                    --vertical_delta_y;
+                    vertical_delta_y = -1;
                 }
+                std::cout << "vertical_y = " << vertical_y << std::endl;
+                std::cout << "vertical_delta_y = " << vertical_delta_y << std::endl;
+                std::cout << "slope =" << slope << std::endl;
+                std::cout << "position.y = " << position.y << std::endl;
+                std::cout << "position.x = " << position.x << std::endl;
 
                 vertical_x = (vertical_y - position.y)/slope + position.x;
                 vertical_delta_x = vertical_delta_y / slope;
+
+                std::cout << "vertical_x = " << vertical_x << std::endl;
+                std::cout << "vertical_delta_x = " << vertical_delta_x << std::endl;
 
                 math::FixedPointInt32 horizontal_x = position.x;  // Horizontal
                 horizontal_x.floor();
@@ -88,6 +113,9 @@ namespace engine {
                 math::Vector2D horizontal_pos(horizontal_x, horizontal_y);
 
                 math::Vector2D hit_pos(-1, -1);  // fallback
+                std::cout << "horizontal delta = " << horizontal_delta;
+                std::cout << "vertical delta = " << vertical_delta << std::endl;
+                
 
                 do {
                     if ((horizontal_pos-position) < (vertical_pos-position)) {
@@ -99,8 +127,9 @@ namespace engine {
                         vertical_pos += vertical_delta;
                         vertical_m    = true;
                     }
+                    std::cout << hit_pos << std::endl;
                 } while (!level_m->is_wall(hit_pos));
-
+                
                 return hit_pos;
             }
 

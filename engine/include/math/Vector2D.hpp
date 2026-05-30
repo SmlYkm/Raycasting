@@ -129,6 +129,11 @@ namespace engine {
             bool operator>=(const Vector2D& other) const {
                 return length_squared() >= other.length_squared();
             }
+
+            friend std::ostream& operator<<(std::ostream &out, const Vector2D& n) {  // cout overload
+                out << "(" << n.x << ", " << n.y << ")";
+                return out;                
+            }
         };
 
         // Global scalar multiplication: scalar * Vector

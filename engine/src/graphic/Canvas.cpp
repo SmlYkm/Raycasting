@@ -84,7 +84,12 @@ namespace engine {
             const math::Vector2D& player_dir = player_m->get_direction();
             math::Vector2D camera_vec = player_dir.get_orthogonal() * camera_width_m;
             math::Vector2D camera_pos = player_pos + player_dir + camera_vec;
-            math::Vector2D dec        = camera_vec * (2/(width_m-1));
+            math::Vector2D dec        = camera_vec * (math::FixedPointInt32(2)/(math::FixedPointInt32(width_m)-math::FixedPointInt32(1)));
+
+            std::cout << "camera_vec " << camera_vec << std::endl;
+            std::cout << "camera_pos " << camera_pos << std::endl;
+            std::cout << "dec " << dec << std::endl;
+            
 
             for (int i = 0; i < width_m; ++i) {
                 math::Vector2D        hit_pos   = raycaster_m->dda(camera_pos);

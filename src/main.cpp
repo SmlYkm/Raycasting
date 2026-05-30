@@ -2,12 +2,12 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 
-#include "math/Trig.hpp"
-#include "handlers/CollisionHandler.hpp"
-#include "entities/creatures/Player.hpp"
-#include "graphic/Raycaster.hpp"
-#include "graphic/Canvas.hpp"
 #include "Level1.hpp"
+#include "entities/creatures/Player.hpp"
+#include "handlers/CollisionHandler.hpp"
+#include "graphic/Canvas.hpp"
+#include "graphic/Raycaster.hpp"
+#include "math/Trig.hpp"
 
 // Split screen: 2D Top-Down on the left, 3D Raycasting on the right
 const int TILE_SIZE = 64; 

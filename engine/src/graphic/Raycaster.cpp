@@ -42,45 +42,30 @@ namespace engine {
 
         math::Vector2D Raycaster::dda(const math::Vector2D& camera) {
             if (!level_m || !player_m)
-                return math::Vector2D(-1, -1);
+                math::FixedPointInt32::max(), math::FixedPointInt32::max();  // Fallback -> impossible coord (theoretically)
             
             const math::Vector2D& position = player_m->get_position();
-
-            if (
-                (camera.y - position.y).abs() <= math::FixedPointInt32::greater_eps() ||
-                (camera.x - position.x).abs() <= math::FixedPointInt32::greater_eps()
-            ) {
-                std::cout << "camera = " << camera <<" position = "<< position << std::endl;
-                std::cout << "(camera.y - position.y).abs() = " << (camera.y - position.y).abs() << std::endl;
-                std::cout << "(camera.x - position.x).abs() = " << (camera.x - position.x).abs() << std::endl;
-            }
-
-            if ((camera.y-position.y).abs() <= math::FixedPointInt32::greater_eps()){
-                std::cout << "ddah" << std::endl;
-                return dda_h(camera);
-            }
-            
-            if ((camera.x-position.x).abs() <= math::FixedPointInt32::greater_eps()) {
-                std::cout << "ddav" << std::endl;
-                return dda_v(camera);
-            }
-
-            math::FixedPointInt32 slope = (camera.y - position.y) / (camera.x - position.x);
+            math::FixedPointInt32 dy = camera.y - position.y;
+            math::FixedPointInt32 dx = camera.x - position.x;
 
             math::FixedPointInt32 vertical_x = 0;  // Vertical
             math::FixedPointInt32 vertical_y = position.y.floor() + 1;
-    
-
             math::FixedPointInt32 vertical_delta_x = 0;
             math::FixedPointInt32 vertical_delta_y = 1;
 
             if (camera.y < position.y) {  // Facing down
-                vertical_y -= (math::FixedPointInt32::eps() + 1);
+                vertical_y      -= (math::FixedPointInt32::eps() + 1);
                 vertical_delta_y = -1;
             }
 
-            vertical_x = (vertical_y - position.y)/slope + position.x;
-            vertical_delta_x = vertical_delta_y / slope;
+            if (dy.abs() > math::FixedPointInt32::eps()) {
+                vertical_x       = position.x + ((vertical_y - position.y) * dx) / dy;
+                vertical_delta_x = (vertical_delta_y * dx) / dy;
+            
+            } else {
+                return dda_perp_h(camera);
+            
+            }
 
 
             math::FixedPointInt32 horizontal_x = position.x.floor()+1;  // Horizontal
@@ -89,12 +74,18 @@ namespace engine {
             math::FixedPointInt32 horizontal_delta_y = 0;
 
             if (camera.x < position.x) {  // Facing right
-                horizontal_x -= (math::FixedPointInt32::eps() + 1);
+                horizontal_x      -= (math::FixedPointInt32::eps() + 1);
                 horizontal_delta_x = -1;
             }
 
-            horizontal_y = (horizontal_x - position.x)*slope + position.y;
-            horizontal_delta_y = horizontal_delta_x * slope;
+            if (dx.abs() > math::FixedPointInt32::eps()) {
+                horizontal_y       = position.y + ((horizontal_x - position.x) * dy) / dx;
+                horizontal_delta_y = (horizontal_delta_x * dy) / dx;
+            
+            } else {
+                return dda_perp_v(camera);            
+            }
+
 
             math::Vector2D horizontal_delta(  // DDA
                 horizontal_delta_x, 
@@ -107,11 +98,25 @@ namespace engine {
 
             math::Vector2D vertical_pos(vertical_x, vertical_y);
             math::Vector2D horizontal_pos(horizontal_x, horizontal_y);
-
-            math::Vector2D hit_pos(-1, -1);  // fallback
             
+            if (horizontal_pos.length_squared()      <= math::FixedPointInt32::eps()) {
+                return dda_perp_v(camera);
 
-            do {
+            } else if (vertical_pos.length_squared() <= math::FixedPointInt32::eps()) {
+                return dda_perp_h(camera);
+            
+            }
+            math::Vector2D horizontal_diff = horizontal_pos - position;
+            math::Vector2D vertical_diff   = vertical_pos   - position; 
+            math::Vector2D hit_pos         = (
+                horizontal_diff < vertical_diff
+            ) ? 
+                horizontal_pos 
+            : 
+                vertical_pos;
+
+
+            while (!level_m->is_wall(hit_pos)) {
                 if ((horizontal_pos-position) < (vertical_pos-position)) {
                     hit_pos         = horizontal_pos;
                     horizontal_pos += horizontal_delta;
@@ -121,10 +126,83 @@ namespace engine {
                     vertical_pos += vertical_delta;
                     vertical_m    = true;
                 }
-            } while (!level_m->is_wall(hit_pos));
+            }
             
             return hit_pos;
         }
+
+        math::Vector2D Raycaster::dda_h(const math::Vector2D& camera) {
+            if (!level_m || !player_m)
+                return math::Vector2D(math::FixedPointInt32::max(), math::FixedPointInt32::max());  // Fallback -> impossible coord (theoretically)
+            
+            const math::Vector2D& position = player_m->get_position();
+            math::FixedPointInt32 dy = camera.y - position.y;
+            math::FixedPointInt32 dx = camera.x - position.x;
+
+            math::FixedPointInt32 horizontal_x = position.x.floor()+1;  // Horizontal
+            math::FixedPointInt32 horizontal_y = 0;
+            math::FixedPointInt32 horizontal_delta_x = 1;
+            math::FixedPointInt32 horizontal_delta_y = 0;
+
+            if (camera.x < position.x) {  // Facing right
+                horizontal_x      -= (math::FixedPointInt32::eps() + 1);
+                horizontal_delta_x = -1;
+            }
+
+            horizontal_y       = position.y + ((horizontal_x - position.x) * dy) / dx;
+            horizontal_delta_y = (horizontal_delta_x * dy) / dx;
+
+            math::Vector2D horizontal_delta(  // DDA
+                horizontal_delta_x, 
+                horizontal_delta_y
+            );
+
+            math::Vector2D horizontal_pos(horizontal_x, horizontal_y);
+            
+            vertical_m = false;
+            
+            while (!level_m->is_wall(horizontal_pos))
+                horizontal_pos += horizontal_delta;
+            
+            return horizontal_pos;
+        }
+
+        math::Vector2D Raycaster::dda_v(const math::Vector2D& camera) {
+            if (!level_m || !player_m)
+                return math::Vector2D(math::FixedPointInt32::max(), math::FixedPointInt32::max());  // Fallback -> impossible coord (theoretically)
+            
+            const math::Vector2D& position = player_m->get_position();
+            math::FixedPointInt32 dy = camera.y - position.y;
+            math::FixedPointInt32 dx = camera.x - position.x;
+
+            math::FixedPointInt32 vertical_x = 0;  // Vertical
+            math::FixedPointInt32 vertical_y = position.y.floor() + 1;
+            math::FixedPointInt32 vertical_delta_x = 0;
+            math::FixedPointInt32 vertical_delta_y = 1;
+
+            if (camera.y < position.y) {  // Facing down
+                vertical_y      -= (math::FixedPointInt32::eps() + 1);
+                vertical_delta_y = -1;
+            }
+
+            vertical_x       = position.x + ((vertical_y - position.y) * dx) / dy;
+            vertical_delta_x = (vertical_delta_y * dx) / dy;
+
+            math::Vector2D vertical_delta( // DDA
+                vertical_delta_x,
+                vertical_delta_y
+            );
+
+            math::Vector2D vertical_pos(vertical_x, vertical_y);
+            
+
+            vertical_m = true;
+            while (!level_m->is_wall(vertical_pos))
+                vertical_pos += vertical_delta;
+            
+            return vertical_pos;
+        }
+
 
     //    Math::Vector2D<float> Raycaster::castRay(const Math::Vector2D<float>& castingPos,const Math::Vector2D<float>& cameraPoint, Game::Map* map) {
     //        float slope = (cameraPoint.getY() - castingPos.getY()) / ((cameraPoint.getX() - castingPos.getX()));   
@@ -190,9 +268,9 @@ namespace engine {
 
 
 
-        math::Vector2D Raycaster::dda_v(const math::Vector2D& camera){
+        math::Vector2D Raycaster::dda_perp_v(const math::Vector2D& camera){
             if (!level_m || !player_m)
-                return math::Vector2D(-1, -1);
+                math::FixedPointInt32::max(), math::FixedPointInt32::max();
 
             vertical_m = true;
             const math::Vector2D& position = player_m->get_position();
@@ -223,7 +301,7 @@ namespace engine {
             return vertical_pos;
         }
 
-        math::Vector2D Raycaster::dda_h(const math::Vector2D& camera){
+        math::Vector2D Raycaster::dda_perp_h(const math::Vector2D& camera){
             vertical_m = false;
             const math::Vector2D& position = player_m->get_position();
             math::FixedPointInt32 horizontal_x = position.x.floor()+1;  // Horizontal

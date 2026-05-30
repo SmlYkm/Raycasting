@@ -87,17 +87,23 @@ namespace engine {
             math::Vector2D dec        = camera_vec * (math::FixedPointInt32(2)/(math::FixedPointInt32(width_m)-math::FixedPointInt32(1)));
 
             for (int i = 0; i < width_m; ++i) {
-                math::Vector2D hit_pos = raycaster_m->dda(camera_pos);
-                ray_hits_m[i] = hit_pos; // <-- Cache the hit position
+                // math::Vector2D hit_pos = raycaster_m->dda(camera_pos);
+                math::Vector2D hit_pos_h = raycaster_m->dda_h(camera_pos) - player_pos;
+                math::Vector2D hit_pos_v = raycaster_m->dda_v(camera_pos) - player_pos;
+                math::Vector2D hit_pos = (hit_pos_h <= hit_pos_v) ? hit_pos_h : hit_pos_v;
+                
+                ray_hits_m[i] = hit_pos+player_pos; // <-- Cache the hit position
 
-                math::FixedPointInt32 perp_dist = (hit_pos - player_pos) * player_dir;
+                math::FixedPointInt32 perp_dist = hit_pos * player_dir;
                 
                 canvas_m[i] = (height_m / perp_dist).floor().get_int();
 
-                // if (canvas_m[i] < 5) {
-                //     std::cout << ray_hits_m[i] << std::endl;
-                //     math::FixedPointInt32 perp_dist = (hit_pos - player_pos) * player_dir;
-                // } 
+                if (canvas_m[i] < 5) {
+                    std::cout << "direction = " << camera_pos - player_dir << std::endl;
+                    std::cout << "hit pos   = " << ray_hits_m[i] << std::endl;
+                    std::cout << "hit pos v = " << hit_pos_v << " len = " << hit_pos_v.length_squared() << std::endl;
+                    std::cout << "hit pos h = " << hit_pos_h << " len = " << hit_pos_h.length_squared() << std::endl;
+                } 
 
                 if (canvas_m[i] > height_m) canvas_m[i] = height_m;
 

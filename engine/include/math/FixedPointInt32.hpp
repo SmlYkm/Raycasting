@@ -116,6 +116,10 @@ namespace engine {
             FixedPointInt32 abs() const;
 
             friend std::ostream& operator<<(std::ostream &out, const FixedPointInt32 &n);  // cout overload
+        
+        public:
+            static bool mul_will_overflow( FixedPointInt32 a, FixedPointInt32 b);
+            static bool div_will_overflow( FixedPointInt32 a, FixedPointInt32 b);
         };
     }
 }

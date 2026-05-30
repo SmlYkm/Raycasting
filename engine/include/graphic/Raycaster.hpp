@@ -43,10 +43,12 @@ namespace engine {
 
             bool hit_is_vertical() const;
             math::Vector2D dda(const math::Vector2D& camera);
+            math::Vector2D dda_h(const math::Vector2D& camera);
+            math::Vector2D dda_v(const math::Vector2D& camera);
         
         private:
-            math::Vector2D dda_v(const math::Vector2D& camera);
-            math::Vector2D dda_h(const math::Vector2D& camera);
+            math::Vector2D dda_perp_v(const math::Vector2D& camera);
+            math::Vector2D dda_perp_h(const math::Vector2D& camera);
         };
     }
 }

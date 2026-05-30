@@ -33,21 +33,27 @@ namespace engine {
                 return Vector2D(y, -x); 
             }
 
-            FixedPointInt32 length_squared() const { 
-                return (x * x) + (y * y); 
+            int64_t length_squared() const {                 
+                int64_t this_x  = (int64_t) x.get();
+                int64_t this_y  = (int64_t) y.get();
+
+
+                return this_x*this_x + this_y*this_y;
             }
 
-            FixedPointInt32 length() const { 
-                return length_squared().sqrt(); 
-            }
+            // FixedPointInt32 length() const { 
+            //     return length_squared().sqrt(); 
+            // }
 
-            void normalize() {
-                FixedPointInt32 len = length();
-                if (len != 0) {
-                    x /= len;
-                    y /= len;
-                }
-            }
+            // void normalize() {
+            //     int64_t this_x  = (int64_t) x.get();
+            //     int64_t this_y  = (int64_t) y.get();
+            //     int64_t len     = length();
+            //     if (len != 0) {
+            //         x /= len;
+            //         y /= len;
+            //     }
+            // }
 
             Vector2D operator+(const Vector2D& other) const {
                 return Vector2D(x + other.x, y + other.y);
@@ -115,7 +121,12 @@ namespace engine {
             }
 
             bool operator<(const Vector2D& other) const {
-                return length_squared() < other.length_squared();
+                int64_t this_x  = (int64_t) x.get();
+                int64_t this_y  = (int64_t) y.get();
+                int64_t other_x = (int64_t) other.x.get();
+                int64_t other_y = (int64_t) other.y.get();
+
+                return (this_x*this_x + this_y*this_y < other_x*other_x +other_y*other_y );
             }
 
             bool operator<=(const Vector2D& other) const {

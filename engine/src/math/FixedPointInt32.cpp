@@ -76,7 +76,7 @@ namespace engine {
 
 
         const FixedPointInt32 FixedPointInt32::max_FixedPointInt32() {
-            return FixedPointInt32(max_int(), false);
+            return FixedPointInt32(0x7FFFFFFF, false);
         }
 
         const FixedPointInt32 FixedPointInt32::min_FixedPointInt32() {
@@ -449,6 +449,22 @@ namespace engine {
             if (bits_m < 0)
                 return FixedPointInt32(-bits_m, false);
             return *this;
+        }
+
+
+        bool FixedPointInt32::mul_will_overflow(FixedPointInt32 a, FixedPointInt32 b) {
+            int64_t result = static_cast<int64_t>(a.bits_m) * b.bits_m;
+            return (result > INT32_MAX || result < INT32_MIN);
+        }
+
+        bool FixedPointInt32::div_will_overflow(FixedPointInt32 a, FixedPointInt32 b) {
+            if (b.bits_m == 0)
+                return true;
+            
+            if (a.bits_m == INT32_MIN && b.bits_m == -1)
+                return true; 
+
+            return false;
         }
     }
 }

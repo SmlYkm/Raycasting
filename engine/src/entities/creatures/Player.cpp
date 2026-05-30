@@ -2,7 +2,9 @@
 #include "entities/creatures/Player.hpp"
 #include "handlers/CollisionHandler.hpp"
 
+#ifdef RAYCASTING_ENGINE_DEBUG
 #include <iostream>
+#endif
 
 namespace engine{
     namespace entities {

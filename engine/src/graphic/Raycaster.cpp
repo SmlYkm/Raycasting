@@ -2,7 +2,9 @@
 #include "world/Level.hpp"
 #include "entities/creatures/Player.hpp"
 
+#ifdef RAYCASTING_ENGINE_DEBUG
 #include <iostream>
+#endif
 
 namespace engine {
     namespace graphic{

@@ -1,7 +1,9 @@
 #include "math/utils.hpp"
 #include "math/Trig.hpp"
 
+#ifdef RAYCASTING_ENGINE_DEBUG
 #include <iostream>
+#endif
 
 namespace engine {
     namespace math {

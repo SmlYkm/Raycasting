@@ -175,7 +175,6 @@ namespace engine {
 
         FixedPointInt32 FixedPointInt32::operator/(const FixedPointInt32 &other) const {
             if (other.bits_m == 0) {
-                std::cout << "Division by 0" << std::endl;
                 return FixedPointInt32(0x7FFFFFFF, false);  // Max possible value
                 // throw std::runtime_error("Division by 0!\n");
             }
@@ -244,7 +243,6 @@ namespace engine {
 
         FixedPointInt32& FixedPointInt32::operator/=(const FixedPointInt32 &other) {
             if (other.bits_m == 0) {
-                std::cout << "Division by 0" << std::endl;
                 *this = FixedPointInt32(0x7FFFFFFF, false);  // Max possible value
                 return *this;
                 // throw std::runtime_error("Division by 0!\n");

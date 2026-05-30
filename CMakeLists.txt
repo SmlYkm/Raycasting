@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(Raycasting)
 
+
 ###############################################################################
 ## standards ##################################################################
 ###############################################################################
@@ -24,9 +25,11 @@ set(sources
 )
 
 ###############################################################################
-## SDL2 #######################################################################
+## Dependencies ###############################################################
 ###############################################################################
 
+# Find the ncurses library
+find_package(Curses REQUIRED)
 find_package(SDL2 REQUIRED)
 
 ###############################################################################
@@ -45,6 +48,7 @@ add_executable(Raycasting
 target_include_directories(Raycasting PUBLIC 
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/engine/include
+    ${CURSES_INCLUDE_DIRS}
     ${SDL2_INCLUDE_DIRS}
 )
 
@@ -64,4 +68,5 @@ add_compile_options(-fdiagnostics-color=always)
 ## linking ####################################################################
 ###############################################################################
 
-target_link_libraries(Raycasting PRIVATE ${SDL2_LIBRARIES})
+# Link the executable with ncurses
+target_link_libraries(Raycasting PRIVATE ${CURSES_LIBRARIES} ${SDL2_LIBRARIES})

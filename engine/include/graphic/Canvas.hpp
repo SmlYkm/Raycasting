@@ -22,7 +22,9 @@ namespace engine {
             int                   height_m;
             int                   width_m;
             int                  *canvas_m;
-            math::Vector2D       *ray_hits_m; // <-- Added to store hit positions
+#ifdef RAYCASTING_ENGINE_DEBUG
+            math::Vector2D       *ray_hits_m;
+#endif 
             Raycaster            *raycaster_m;
             math::FixedPointInt32 camera_width_m;
             entities::creatures::Player *player_m;
@@ -51,7 +53,9 @@ namespace engine {
 
         public:
             int operator[](const int idx) const;
-            math::Vector2D get_ray_hit(const int idx) const; // <-- Added getter
+#ifdef RAYCASTING_ENGINE_DEBUG
+            math::Vector2D get_ray_hit(const int idx) const;
+#endif
             void update();
         };
     }

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ncurses.h>
-#include <unistd.h> // For usleep()
-#include <SDL2/SDL.h> // Bring SDL back for inputs
+#include <unistd.h>   // For usleep()
+#include <SDL2/SDL.h> // SDL for inputs
 
 #include "Level1.hpp"
 #include "entities/creatures/Player.hpp"
@@ -9,6 +9,8 @@
 #include "graphic/Canvas.hpp"
 #include "graphic/Raycaster.hpp"
 #include "math/Trig.hpp"
+
+#define BUFLEN 9
 
 using namespace engine;
 using namespace engine::math;
@@ -67,7 +69,7 @@ int main() {
     entities::creatures::Player player(
         FixedPointInt32(15, 1), FixedPointInt32(15, 1), 
         player_hitbox,
-        FixedPointInt32(5, 2), 
+        FixedPointInt32(4, 2), 
         Vector2D(FixedPointInt32(1), FixedPointInt32(0)), 
         FixedPointInt32(0), 
         FixedPointInt32(2)  
@@ -103,9 +105,9 @@ int main() {
 
         player.set_state(entities::creatures::Creature::Idle);
         
-        if (keys[SDL_SCANCODE_Q] || keys[SDL_SCANCODE_ESCAPE]) {
-            quit = true; 
-        }
+        // if (keys[SDL_SCANCODE_Q] || keys[SDL_SCANCODE_ESCAPE]) {
+        //     quit = true; 
+        // }
         
         if (keys[SDL_SCANCODE_W] || keys[SDL_SCANCODE_UP]) {
             player.set_state(entities::creatures::Creature::Forward); 
@@ -143,24 +145,56 @@ int main() {
                 } else if (y >= start_y && y <= end_y) {
                     attron(COLOR_PAIR(1));   // Wall
                     char c = '.';
-                    if (line_height > 30) {
-                        c = '@';
-                    } else if (line_height > 25) {
-                        c = '#';
-                    } else if (line_height > 20) {
-                        c = '$';
-                    } else if(line_height > 15) {
-                        c = '!';
-                    } else if (line_height > 10) {
-                        c = ';';
-                    } else if (line_height > 5) {
-                        c = ':';
+
+                    int v_thresh[BUFLEN] = {
+                        999,  
+                        999,   
+                        999, 
+                        26+5,  
+                        19+5, 
+                        12+5, 
+                        12, 
+                        7, 
+                        3
+                    };
+                    int h_thresh[BUFLEN] = {
+                        33+5 ,  
+                        27+5,   
+                        22+5, 
+                        16+5,  
+                        10+5,  
+                        4+5, 
+                        4, 
+                        2, 
+                        1
+                    };
+
+                    int chars[BUFLEN]    = {
+                        '#', 
+                        '@', 
+                        '$', 
+                        '!', 
+                        ';', 
+                        ':', 
+                        '^', 
+                        '~', 
+                        ','
+                    };
+
+                    int *thresh = (*canvas)(x) ? v_thresh : h_thresh;
+
+                    for (int i = 0; i < BUFLEN; ++i) {
+                        if (line_height > thresh[i]) {
+                            c = chars[i];
+                            break;
+                        }
                     }
+
                     mvaddch(y, x, c); 
                     attroff(COLOR_PAIR(1));
                 } else {
                     attron(COLOR_PAIR(3));  // Floor
-                    mvaddch(y, x, '#');
+                    mvaddch(y, x, '*');
                     attroff(COLOR_PAIR(3));
                 }
             }

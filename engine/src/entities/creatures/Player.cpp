@@ -10,13 +10,13 @@ namespace engine{
     namespace entities {
         namespace creatures {
             Player::Player(
-                const math::FixedPointInt32& x,
-                const math::FixedPointInt32& y,
+                math::FixedPointInt32 x,
+                math::FixedPointInt32 y,
                 const math::AABB&            hitbox,
-                const math::FixedPointInt32& velocity,
+                math::FixedPointInt32 velocity,
                 const math::Vector2D&        direction,
-                const math::FixedPointInt32& angle,
-                const math::FixedPointInt32& angular_velocity
+                math::FixedPointInt32 angle,
+                math::FixedPointInt32 angular_velocity
             ) : Creature(
                     math::Vector2D(x, y),
                     hitbox,

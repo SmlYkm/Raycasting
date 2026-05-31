@@ -160,9 +160,7 @@ namespace engine {
             );
 
             math::Vector2D horizontal_pos(horizontal_x, horizontal_y);
-            
-            vertical_m = false;
-            
+                        
             while (!level_m->is_wall(horizontal_pos))
                 horizontal_pos += horizontal_delta;
             
@@ -197,8 +195,6 @@ namespace engine {
 
             math::Vector2D vertical_pos(vertical_x, vertical_y);
             
-
-            vertical_m = true;
             while (!level_m->is_wall(vertical_pos))
                 vertical_pos += vertical_delta;
             

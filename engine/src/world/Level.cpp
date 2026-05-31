@@ -51,7 +51,7 @@ namespace engine {
             return tile != ' '; 
         }
 
-        bool Level::is_wall(const math::FixedPointInt32& i, const math::FixedPointInt32& j) const {
+        bool Level::is_wall(math::FixedPointInt32 i, math::FixedPointInt32 j) const {
             return is_wall(
                 math::Vector2D(j, i)
             );

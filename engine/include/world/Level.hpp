@@ -41,7 +41,7 @@ namespace engine {
             int  rows() const;
             int  cols() const;
             bool is_wall(const math::Vector2D& position) const;
-            bool is_wall(const math::FixedPointInt32& i, const math::FixedPointInt32& j) const;
+            bool is_wall(math::FixedPointInt32 i, math::FixedPointInt32 j) const;
                         
             virtual void run() = 0; 
             

@@ -26,14 +26,14 @@ namespace engine {
 
         public:
             static const FixedPointInt32 taylor_sin(const int degrees);
-            static const FixedPointInt32 taylor_sin(const FixedPointInt32& degrees);
+            static const FixedPointInt32 taylor_sin(const FixedPointInt32 degrees);
 
             static const FixedPointInt32 sin(const int degrees);
-            static const FixedPointInt32 sin(const FixedPointInt32& degrees);
+            static const FixedPointInt32 sin(const FixedPointInt32 degrees);
             static const FixedPointInt32 cos(const int degrees);
-            static const FixedPointInt32 cos(const FixedPointInt32& degrees);
+            static const FixedPointInt32 cos(const FixedPointInt32 degrees);
             static const FixedPointInt32 tan(const int degrees);
-            static const FixedPointInt32 tan(const FixedPointInt32& degrees);
+            static const FixedPointInt32 tan(const FixedPointInt32 degrees);
         };
     }
 }

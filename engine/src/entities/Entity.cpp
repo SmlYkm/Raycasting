@@ -27,7 +27,7 @@ namespace engine {
             world_p = new_level;
         }
 
-        void Entity::set_position(const math::FixedPointInt32& x, const math::FixedPointInt32& y) {
+        void Entity::set_position(math::FixedPointInt32 x, math::FixedPointInt32 y) {
             math::FixedPointInt32 delta_x = x - x_m;
             math::FixedPointInt32 delta_y = y - y_m;
             hitbox_m.move(delta_x, delta_y);
@@ -39,7 +39,7 @@ namespace engine {
             set_position(position.x, position.y);
         }
 
-        void Entity::move(const math::FixedPointInt32& delta_x, const math::FixedPointInt32& delta_y) {
+        void Entity::move(math::FixedPointInt32 delta_x, math::FixedPointInt32 delta_y) {
             hitbox_m.move(delta_x, delta_y);
             x_m += delta_x;
             y_m += delta_y;

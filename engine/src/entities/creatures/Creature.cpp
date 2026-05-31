@@ -5,12 +5,12 @@ namespace engine {
     namespace entities {
         namespace creatures {
             Creature::Creature(
-                const math::Vector2D&        position,
-                const math::AABB&            hitbox,
-                const math::FixedPointInt32& velocity,
-                const math::Vector2D&        direction,
-                const math::FixedPointInt32& angle,
-                const math::FixedPointInt32& angular_velocity
+                const math::Vector2D& position,
+                const math::AABB&     hitbox,
+                math::FixedPointInt32 velocity,
+                const math::Vector2D& direction,
+                math::FixedPointInt32 angle,
+                math::FixedPointInt32 angular_velocity
             ) : Entity(position, hitbox), 
                 state_m(Idle), 
                 velocity_m(velocity), 

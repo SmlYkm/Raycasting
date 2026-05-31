@@ -25,6 +25,7 @@ namespace engine {
 #ifdef RAYCASTING_ENGINE_DEBUG
             math::Vector2D       *ray_hits_m;
 #endif 
+            bool                 *hit_was_vertical_m;
             Raycaster            *raycaster_m;
             math::FixedPointInt32 camera_width_m;
             entities::creatures::Player *player_m;
@@ -49,10 +50,14 @@ namespace engine {
             void set_level(world::Level *level);
             void set_canvas_width(const int width);
             void set_canvas_height(const int height);
-            void set_camera_len(const math::FixedPointInt32& len);
+            void set_camera_len(math::FixedPointInt32 len);
 
         public:
             int operator[](const int idx) const;
+            int canvas_at(const int idx) const;
+
+            bool operator()(const int idx) const;
+            bool hit_was_vertical_at(const int idx) const;
 #ifdef RAYCASTING_ENGINE_DEBUG
             math::Vector2D get_ray_hit(const int idx) const;
 #endif

@@ -18,6 +18,7 @@ namespace engine {
 #ifdef RAYCASTING_ENGINE_DEBUG
             ray_hits_m(nullptr),
 #endif
+            hit_was_vertical_m(nullptr),
             raycaster_m(nullptr),  
             camera_width_m(1),
             player_m(nullptr) {
@@ -28,12 +29,15 @@ namespace engine {
             raycaster_m = nullptr;  
             if (canvas_m) 
                 delete[] canvas_m;
+            canvas_m   = nullptr;
 #ifdef RAYCASTING_ENGINE_DEBUG
             if (ray_hits_m) 
                 delete[] ray_hits_m;
             ray_hits_m = nullptr;
 #endif
-            canvas_m   = nullptr;
+            if (hit_was_vertical_m)
+                delete[] hit_was_vertical_m;
+            hit_was_vertical_m = nullptr;
             if (instance_p) 
                 delete instance_p;
             instance_p = nullptr;
@@ -64,32 +68,54 @@ namespace engine {
                 return;
             if (canvas_m) 
                 delete[] canvas_m;
+            if (hit_was_vertical_m)
+                delete[] hit_was_vertical_m;
 #ifdef RAYCASTING_ENGINE_DEBUG
             if (ray_hits_m) 
                 delete[] ray_hits_m; 
             ray_hits_m = new math::Vector2D[width];
 #endif
-            canvas_m   = new int[width];
-            width_m    = width;
+            canvas_m           = new int[width];
+            hit_was_vertical_m = new bool[width];
+            width_m            = width;
         }
 
         void Canvas::set_canvas_height(const int height) {
-            if (height <= 0) return;
+            if (height <= 0) 
+                return;
             height_m = height;
         }
 
-        void Canvas::set_camera_len(const math::FixedPointInt32& len) {
-            if (len <= 0) return;
+        void Canvas::set_camera_len(math::FixedPointInt32 len) {
+            if (len <= 0) 
+                return;
             camera_width_m = len;
         }
 
         int Canvas::operator[](const int idx) const {
-            if (idx < 0 || idx >= width_m || !canvas_m) return -1;
+            if (idx < 0 || idx >= width_m || !canvas_m) 
+                return -1;
             return canvas_m[idx];
         }
+
+        int Canvas::canvas_at(const int idx) const {
+            return this->operator[](idx);
+        }
+
+        bool Canvas::operator()(const int idx) const {
+            if (idx < 0 || idx >= width_m || !hit_was_vertical_m) 
+                return false;
+            return hit_was_vertical_m[idx];
+        }
+
+        bool Canvas::hit_was_vertical_at(const int idx) const {
+            return this->operator()(idx);
+        }
+
 #ifdef RAYCASTING_ENGINE_DEBUG
-        math::Vector2D Canvas::get_ray_hit(const int idx) const { // <-- Implementation
-            if (idx < 0 || idx >= width_m || !ray_hits_m) return math::Vector2D(-1, -1);
+        math::Vector2D Canvas::get_ray_hit(const int idx) const {
+            if (idx < 0 || idx >= width_m || !ray_hits_m) 
+                return math::Vector2D(-1, -1);
             return ray_hits_m[idx];
         }
 #endif
@@ -109,14 +135,14 @@ namespace engine {
                 math::Vector2D hit_pos_h = raycaster_m->dda_h(camera_pos) - player_pos;
                 math::Vector2D hit_pos_v = raycaster_m->dda_v(camera_pos) - player_pos;
                 math::Vector2D hit_pos = (hit_pos_h <= hit_pos_v) ? hit_pos_h : hit_pos_v;
-                
+                hit_was_vertical_m[i]  = hit_pos == hit_pos_v;
+
 #ifdef RAYCASTING_ENGINE_DEBUG
                 ray_hits_m[i] = hit_pos+player_pos;
 #endif
                 math::FixedPointInt32 perp_dist = hit_pos * player_dir;
                 
                 canvas_m[i] = (height_m / perp_dist).floor().get_int();
-
                 if (canvas_m[i] > height_m) 
                     canvas_m[i] = height_m;
 

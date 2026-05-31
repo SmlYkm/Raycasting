@@ -26,7 +26,7 @@ namespace engine {
             return sin_arr;
         }
 
-        const FixedPointInt32 Trig::taylor_sin(const FixedPointInt32& degrees) {
+        const FixedPointInt32 Trig::taylor_sin(const FixedPointInt32 degrees) {
             FixedPointInt32 pi   = FixedPointInt32::pi();
             FixedPointInt32 temp = pi * degrees;
             FixedPointInt32 radians(temp / 180);
@@ -73,7 +73,7 @@ namespace engine {
             return -sin_m[angle];
         }
 
-        const FixedPointInt32 Trig::sin(const FixedPointInt32& degrees) {
+        const FixedPointInt32 Trig::sin(const FixedPointInt32 degrees) {
             return sin(degrees.floor().get_int());
         }
 
@@ -81,7 +81,7 @@ namespace engine {
             return sin(degrees + 90);
         }
 
-        const FixedPointInt32 Trig::cos(const FixedPointInt32& degrees) {
+        const FixedPointInt32 Trig::cos(const FixedPointInt32 degrees) {
             return cos(degrees.floor().get_int());
         }
 
@@ -92,7 +92,7 @@ namespace engine {
             return sin(degrees) / c;
         }
 
-        const FixedPointInt32 Trig::tan(const FixedPointInt32& degrees) {
+        const FixedPointInt32 Trig::tan(const FixedPointInt32 degrees) {
             return tan(degrees.floor().get_int());
         }
     }

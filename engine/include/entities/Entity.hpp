@@ -34,10 +34,10 @@ namespace engine {
             static void set_world(world::Level* new_level);
         
         public:
-            virtual void set_position(const math::FixedPointInt32& x, const math::FixedPointInt32& y);
+            virtual void set_position(math::FixedPointInt32 x, math::FixedPointInt32 y);
             virtual void set_position(const math::Vector2D position);
             virtual math::Vector2D get_position() const;
-            virtual void move(const math::FixedPointInt32& delta_x, const math::FixedPointInt32& delta_y);
+            virtual void move(math::FixedPointInt32 delta_x, math::FixedPointInt32 delta_y);
             virtual void move(const math::Vector2D delta);
 
             virtual void set_hitbox(const math::AABB& hitbox);

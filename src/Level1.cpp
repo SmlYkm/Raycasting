@@ -4,17 +4,25 @@ namespace game {
     
     // A simple 8x8 enclosed room with some pillars
     const char* level1_map = 
-        "########"
-        "#      #"
-        "#  ##  #"
-        "#      #"
-        "#   #  #"
-        "#      #"
-        "#      #"
-        "########";
+        "################"
+        "#              #"
+        "#   # # # #  # #"
+        "# # # ## ### # #"
+        "##### # # #  # #"
+        "# #   #    ##  #"
+        "# ###  # #   # #"
+        "#    #       # #"
+        "#### # # ### # #"
+        "#  # # #  #  # #"
+        "#      # ### # #"
+        "# ### ###    # #"
+        "#  #      #  # #"
+        "# ######## ### #"
+        "#              #"
+        "################";
 
     // Pass the map, rows (8), and cols (8) to the base engine class
-    Level1::Level1() : engine::world::Level(level1_map, 8, 8) {
+    Level1::Level1() : engine::world::Level(level1_map, 16, 16) {
     }
 
     Level1::~Level1() {
